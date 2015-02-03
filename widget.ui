@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>523</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Панель настройки</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*:focus {background-color: rgb(85, 255, 127)}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Настройки</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,0,1,0,1">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="lbLogo">
+              <property name="styleSheet">
+               <string notr="true">image: url(:/logo.png);</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btOpenLogo">
+              <property name="text">
+               <string>Открыть логотип</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="formLayout_2">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Название</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Значение</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Чемпионат</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineChampName">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Чемпионат Антарктиды 2018</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Команда 1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineCommand1">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Зеленые Тюлени</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Команда 2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineCommand2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Синие Пингвины</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btApply">
+          <property name="text">
+           <string>Применить</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Соотношение сторон</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QRadioButton" name="rb43">
+             <property name="text">
+              <string>4:3</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="rb1610">
+             <property name="text">
+              <string>16:10</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="rb169">
+             <property name="text">
+              <string>16:9</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="cbFullScreen">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Полный экран</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Элемент</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Шрифт</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Чемпионат</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="sbChampName">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>Команда</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="sbCommand">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Матч</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="sbMatch">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Счет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="sbScore">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Фолы</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="sbFoul">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Таймер</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="sbTimer">
+          <property name="value">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="formLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>Элемент</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Общий фон</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>Общий цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="tbSelectBkg">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="tbSelectClr">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>Команда 1</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="text">
+           <string>Команда 2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QToolButton" name="tbSelectCmd1Bkg">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QToolButton" name="tbSelectCmd2Bkg">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,3">
+     <item>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="title">
+        <string>Управление</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0">
+        <item>
+         <widget class="QPushButton" name="btResetScore">
+          <property name="text">
+           <string>Сброс</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Матч</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="sbMatchN">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>99</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Фолы 1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Фолы 2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QSpinBox" name="sbFoul1">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>6</number>
+            </property>
+            <property name="value">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="sbFoul2">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>6</number>
+            </property>
+            <property name="value">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Счет 1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Счет 2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QSpinBox" name="sbScore1">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="value">
+             <number>99</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="sbScore2">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="value">
+             <number>99</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btApplyScore">
+          <property name="text">
+           <string>Применить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Таймер</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>Матч 1</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QTimeEdit" name="timeEdit">
+             <property name="currentSection">
+              <enum>QDateTimeEdit::HourSection</enum>
+             </property>
+             <property name="displayFormat">
+              <string>H:mm:ss</string>
+             </property>
+             <property name="time">
+              <time>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>5</second>
+              </time>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="dial">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBelow</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStart">
+             <property name="text">
+              <string>Старт</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStop">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Стоп</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="title">
+           <string>Перерыв</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QTimeEdit" name="timeEdit2">
+             <property name="currentSection">
+              <enum>QDateTimeEdit::HourSection</enum>
+             </property>
+             <property name="displayFormat">
+              <string>H:mm:ss</string>
+             </property>
+             <property name="time">
+              <time>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>2</second>
+              </time>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="dial2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBelow</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStart2">
+             <property name="text">
+              <string>Старт</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStop2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Стоп</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>Матч 2</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QTimeEdit" name="timeEdit3">
+             <property name="currentSection">
+              <enum>QDateTimeEdit::HourSection</enum>
+             </property>
+             <property name="displayFormat">
+              <string>H:mm:ss</string>
+             </property>
+             <property name="time">
+              <time>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>5</second>
+              </time>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="dial3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBelow</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStart3">
+             <property name="text">
+              <string>Старт</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btStop3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Стоп</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>btOpenLogo</tabstop>
+  <tabstop>lineChampName</tabstop>
+  <tabstop>lineCommand1</tabstop>
+  <tabstop>lineCommand2</tabstop>
+  <tabstop>btApply</tabstop>
+  <tabstop>sbChampName</tabstop>
+  <tabstop>sbCommand</tabstop>
+  <tabstop>sbMatch</tabstop>
+  <tabstop>sbScore</tabstop>
+  <tabstop>sbFoul</tabstop>
+  <tabstop>sbTimer</tabstop>
+  <tabstop>rb43</tabstop>
+  <tabstop>rb1610</tabstop>
+  <tabstop>rb169</tabstop>
+  <tabstop>cbFullScreen</tabstop>
+  <tabstop>timeEdit</tabstop>
+  <tabstop>timeEdit2</tabstop>
+  <tabstop>timeEdit3</tabstop>
+  <tabstop>dial</tabstop>
+  <tabstop>dial2</tabstop>
+  <tabstop>dial3</tabstop>
+  <tabstop>btStart</tabstop>
+  <tabstop>btStop</tabstop>
+  <tabstop>btStart2</tabstop>
+  <tabstop>btStop2</tabstop>
+  <tabstop>btStart3</tabstop>
+  <tabstop>btStop3</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

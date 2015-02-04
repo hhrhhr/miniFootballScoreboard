@@ -23,7 +23,7 @@
      <property name="title">
       <string>Настройки</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,0,1,0,1">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,0,1,0,1">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -161,16 +161,6 @@
             <widget class="QRadioButton" name="rb169">
              <property name="text">
               <string>16:9</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cbFullScreen">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="text">
-              <string>Полный экран</string>
              </property>
             </widget>
            </item>
@@ -370,6 +360,48 @@
           </property>
          </widget>
         </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_25">
+          <property name="text">
+           <string>Таймер цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QToolButton" name="tbSelecTmrClr">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>Фол &quot;зеленый&quot;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QToolButton" name="tbSelectFoulClrGreen">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_27">
+          <property name="text">
+           <string>Фол &quot;красный&quot;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QToolButton" name="tbSelectFoulClrRed">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -548,183 +580,346 @@
        <property name="title">
         <string>Таймер</string>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QGroupBox" name="groupBox_5">
-          <property name="title">
-           <string>Матч 1</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QTimeEdit" name="timeEdit">
-             <property name="currentSection">
-              <enum>QDateTimeEdit::HourSection</enum>
-             </property>
-             <property name="displayFormat">
-              <string>H:mm:ss</string>
-             </property>
-             <property name="time">
-              <time>
-               <hour>0</hour>
-               <minute>0</minute>
-               <second>5</second>
-              </time>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="dial">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::TicksBelow</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStart">
-             <property name="text">
-              <string>Старт</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStop">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Стоп</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QRadioButton" name="radioButton_7">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Обратный</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_8">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Прямой</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_28">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Формат</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>mm:ss</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_6">
-          <property name="title">
-           <string>Перерыв</string>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <property name="rightMargin">
+           <number>6</number>
           </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item>
-            <widget class="QTimeEdit" name="timeEdit2">
-             <property name="currentSection">
-              <enum>QDateTimeEdit::HourSection</enum>
-             </property>
-             <property name="displayFormat">
-              <string>H:mm:ss</string>
-             </property>
-             <property name="time">
-              <time>
-               <hour>0</hour>
-               <minute>0</minute>
-               <second>2</second>
-              </time>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="dial2">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::TicksBelow</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStart2">
-             <property name="text">
-              <string>Старт</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStop2">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Стоп</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_7">
-          <property name="title">
-           <string>Матч 2</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <item>
-            <widget class="QTimeEdit" name="timeEdit3">
-             <property name="currentSection">
-              <enum>QDateTimeEdit::HourSection</enum>
-             </property>
-             <property name="displayFormat">
-              <string>H:mm:ss</string>
-             </property>
-             <property name="time">
-              <time>
-               <hour>0</hour>
-               <minute>0</minute>
-               <second>5</second>
-              </time>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="dial3">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::TicksBelow</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStart3">
-             <property name="text">
-              <string>Старт</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btStop3">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Стоп</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+          <item>
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="title">
+             <string>Матч 1</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <item>
+                <widget class="QTimeEdit" name="timeEdit">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="displayFormat">
+                  <string>H:mm:ss</string>
+                 </property>
+                 <property name="time">
+                  <time>
+                   <hour>0</hour>
+                   <minute>0</minute>
+                   <second>10</second>
+                  </time>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbTimer1">
+                 <property name="text">
+                  <string>00:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_8">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="title">
+                <string>Поведение</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QRadioButton" name="radioButton">
+                  <property name="text">
+                   <string>Стоп</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_2">
+                  <property name="text">
+                   <string>--&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStart">
+               <property name="text">
+                <string>Старт</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStop">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Стоп</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_6">
+            <property name="title">
+             <string>Перерыв</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QTimeEdit" name="timeEdit2">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="currentSection">
+                  <enum>QDateTimeEdit::HourSection</enum>
+                 </property>
+                 <property name="displayFormat">
+                  <string>H:mm:ss</string>
+                 </property>
+                 <property name="time">
+                  <time>
+                   <hour>0</hour>
+                   <minute>0</minute>
+                   <second>5</second>
+                  </time>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbTimer2">
+                 <property name="text">
+                  <string>00:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_9">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="title">
+                <string>Поведение</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_3">
+                  <property name="text">
+                   <string>Стоп</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_4">
+                  <property name="text">
+                   <string>--&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStart2">
+               <property name="text">
+                <string>Старт</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStop2">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Стоп</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_7">
+            <property name="title">
+             <string>Матч 2</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QTimeEdit" name="timeEdit3">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="currentSection">
+                  <enum>QDateTimeEdit::HourSection</enum>
+                 </property>
+                 <property name="displayFormat">
+                  <string>H:mm:ss</string>
+                 </property>
+                 <property name="time">
+                  <time>
+                   <hour>0</hour>
+                   <minute>0</minute>
+                   <second>10</second>
+                  </time>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbTimer3">
+                 <property name="text">
+                  <string>00:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_10">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="title">
+                <string>Поведение</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_5">
+                  <property name="text">
+                   <string>Стоп</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_6">
+                  <property name="text">
+                   <string>--&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStart3">
+               <property name="text">
+                <string>Старт</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btStop3">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Стоп</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -749,13 +944,6 @@
   <tabstop>rb43</tabstop>
   <tabstop>rb1610</tabstop>
   <tabstop>rb169</tabstop>
-  <tabstop>cbFullScreen</tabstop>
-  <tabstop>timeEdit</tabstop>
-  <tabstop>timeEdit2</tabstop>
-  <tabstop>timeEdit3</tabstop>
-  <tabstop>dial</tabstop>
-  <tabstop>dial2</tabstop>
-  <tabstop>dial3</tabstop>
   <tabstop>btStart</tabstop>
   <tabstop>btStop</tabstop>
   <tabstop>btStart2</tabstop>

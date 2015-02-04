@@ -25,6 +25,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent *e);
     void keyPressEvent(QKeyEvent *e);
+    void mouseDoubleClickEvent(QMouseEvent *e);
 
 private slots:
     void onRefresh();

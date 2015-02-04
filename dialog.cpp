@@ -1,6 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QKeyEvent>
+#include <QTime>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -57,8 +58,8 @@ void Dialog::changeScore()
     ui->lbScore2->setText(QString::number(p.command2Score));
     ui->lbFoul2->setText(QString::number(p.command2Foul));
 
-    ui->lbFoul1->setEnabled(p.command1Foul < 6);
-    ui->lbFoul2->setEnabled(p.command2Foul < 6);
+    ui->lbFoul1->setEnabled(p.command1Foul < 5);
+    ui->lbFoul2->setEnabled(p.command2Foul < 5);
 }
 
 
@@ -73,9 +74,9 @@ void Dialog::onRefresh()
     int h = t / 3600000;
     int m = t % 3600000 / 60000;
     int s = t % 60000 / 1000;
-    int ms = t % 1000;
-    str.sprintf("%1d:%02d:%02d.%03d", h, m, s, ms);
-//    str.sprintf("%02d:%02d", m, s);
+//    int ms = t % 1000;
+//    str.sprintf("%1d:%02d:%02d.%1d", h, m, s);
+    str.sprintf("%02d:%02d", m, s);
     ui->lbTimer->setText(str);
 }
 
@@ -89,6 +90,13 @@ void Dialog::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() != Qt::Key_Escape)
         return QDialog::keyPressEvent(e);
+}
+
+void Dialog::mouseDoubleClickEvent(QMouseEvent *e)
+{
+    Q_UNUSED(e);
+    this->setWindowState(this->windowState() ^ Qt::WindowFullScreen);
+    changeFonts();
 }
 
 void Dialog::calculateStyle()
@@ -128,7 +136,7 @@ border-radius: %12px;\n\
 #lbScoreDivisor {font-size: %8px;}\n\
 #lbScore2   {font-size: %8px;}\n\
 #lbFoul2    {font-size: %9px;}\n\
-#lbTimer    {font-size: %10px;}\n\
+#lbTimer    {font-size: %10px; color: \"%14\"}\n\
 \n\
 #Dialog, #lbScoreDivisor {\n\
 border-width: 0;\n\
@@ -140,16 +148,17 @@ border-color: \"%1\";\n\
 margin: %13px;\n\
 }\n\
 #lbFoul1:enabled, #lbFoul2:enabled {\n\
-background-color: \"#c0439163\";\n\
+background-color: \"%15\";\n\
 }\n\
 #lbFoul1:disabled, #lbFoul2:disabled {\n\
-background-color: \"#c098514e\";\n\
+background-color: \"%16\";\n\
 }");
 
     const QString style = fmt
             .arg(p.background).arg(p.color).arg(p.command1Bkg).arg(p.command2Bkg)
             .arg(size1).arg(size2).arg(size3).arg(size4).arg(size5).arg(size6)
-            .arg(size7).arg(size8).arg(size9);
+            .arg(size7).arg(size8).arg(size9).arg(p.timerColor)
+            .arg(p.foulGreenColor).arg(p.foulRedColor);
 
     this->setStyleSheet(style);
 

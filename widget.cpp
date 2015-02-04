@@ -40,6 +40,12 @@ Widget::Widget(QWidget *parent) :
     ui->tbSelectCmd1Bkg->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.command2Bkg.toLatin1().data());
     ui->tbSelectCmd2Bkg->setStyleSheet(c);
+    c.sprintf("background-color: \"%s\";", p.timerColor.toLatin1().data());
+    ui->tbSelecTmrClr->setStyleSheet(c);
+    c.sprintf("background-color: \"%s\";", p.foulGreenColor.toLatin1().data());
+    ui->tbSelectFoulClrGreen->setStyleSheet(c);
+    c.sprintf("background-color: \"%s\";", p.foulRedColor.toLatin1().data());
+    ui->tbSelectFoulClrRed->setStyleSheet(c);
 
     ui->btOpenLogo->setFocus();
 
@@ -134,6 +140,7 @@ void Widget::on_sbTimer_valueChanged(int arg1)
 void Widget::on_rb43_toggled(bool checked)
 {
     if (f and checked) {
+        f->setWindowState(this->windowState() & ~Qt::WindowFullScreen);
         p.ratio =  4.0 / 3.0;
         f->changeRatio();
     }
@@ -142,6 +149,7 @@ void Widget::on_rb43_toggled(bool checked)
 void Widget::on_rb1610_toggled(bool checked)
 {
     if (f and checked) {
+        f->setWindowState(this->windowState() & ~Qt::WindowFullScreen);
         p.ratio =  16.0 / 10.0;
         f->changeRatio();
     }
@@ -150,26 +158,9 @@ void Widget::on_rb1610_toggled(bool checked)
 void Widget::on_rb169_toggled(bool checked)
 {
     if (f and checked) {
+        f->setWindowState(this->windowState() & ~Qt::WindowFullScreen);
         p.ratio =  16.0 / 9.0;
         f->changeRatio();
-    }
-}
-
-void Widget::on_cbFullScreen_toggled(bool checked)
-{
-    if (checked) {
-        f->setWindowState(f->windowState() | Qt::WindowFullScreen);
-        f->changeFonts();
-        this->raise();
-        ui->rb43->setEnabled(false);
-        ui->rb1610->setEnabled(false);
-        ui->rb169->setEnabled(false);
-    } else {
-        f->setWindowState(f->windowState() & ~Qt::WindowFullScreen);
-        f->changeFonts();
-        ui->rb43->setEnabled(true);
-        ui->rb1610->setEnabled(true);
-        ui->rb169->setEnabled(true);
     }
 }
 
@@ -242,8 +233,8 @@ void Widget::on_btStart_clicked()
             ms *= 1000;
             p.remainingTime = ms;
             activeTimer = 1;
-            ui->dial->setMaximum(ms);
-            ui->dial->setTickInterval((int) ms / 8);
+//            ui->dial->setMaximum(ms);
+//            ui->dial->setTickInterval((int) ms / 8);
             p.timer->start(ms);
         }
     }
@@ -255,7 +246,8 @@ void Widget::on_btStop_clicked()
 {
     p.timer->stop();
     p.remainingTime = 0;
-    ui->dial->setValue(0);
+//    ui->dial->setValue(0);
+    ui->lbTimer1->setText("00:00");
 
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(false);
@@ -301,8 +293,8 @@ void Widget::on_btStart2_clicked()
             ms *= 1000;
             p.remainingTime = ms;
             activeTimer = 2;
-            ui->dial2->setMaximum(ms);
-            ui->dial2->setTickInterval((int) ms / 8);
+//            ui->dial2->setMaximum(ms);
+//            ui->dial2->setTickInterval((int) ms / 8);
             p.timer->start(ms);
         }
     }
@@ -314,7 +306,8 @@ void Widget::on_btStop2_clicked()
 {
     p.timer->stop();
     p.remainingTime = 0;
-    ui->dial2->setValue(0);
+//    ui->dial2->setValue(0);
+    ui->lbTimer2->setText("00:00");
 
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(false);
@@ -359,8 +352,8 @@ void Widget::on_btStart3_clicked()
             ms *= 1000;
             p.remainingTime = ms;
             activeTimer = 3;
-            ui->dial3->setMaximum(ms);
-            ui->dial3->setTickInterval((int) ms / 8);
+//            ui->dial3->setMaximum(ms);
+//            ui->dial3->setTickInterval((int) ms / 8);
             p.timer->start(ms);
         }
     }
@@ -372,7 +365,8 @@ void Widget::on_btStop3_clicked()
 {
     p.timer->stop();
     p.remainingTime = 0;
-    ui->dial3->setValue(0);
+//    ui->dial3->setValue(0);
+    ui->lbTimer3->setText("00:00");
 
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(false);
@@ -394,19 +388,21 @@ void Widget::on_btStop3_clicked()
 
 void Widget::onTimeout()
 {
-//    p.timer = 0;
     if (activeTimer == 1) {
         on_btStop_clicked();
-        on_btStart2_clicked();
+//        on_btStart2_clicked();
+        ui->btStart2->setFocus();
     } else if (activeTimer == 2) {
         on_btStop2_clicked();
         ++p.match;
         ui->sbMatchN->stepUp();
         f->changeScore();
-        on_btStart3_clicked();
+//        on_btStart3_clicked();
+        ui->btStart3->setFocus();
     } else if (activeTimer == 3) {
         on_btStop3_clicked();
-        activeTimer = 1;
+//        activeTimer = 1;
+        ui->btStart->setFocus();
     } else {
         qDebug("!!!!!!!!!!!!!!");
     }
@@ -415,13 +411,22 @@ void Widget::onTimeout()
 void Widget::onRefresh()
 {
     if (p.timer->isActive()) {
-        int r = p.timer->remainingTime();
+        int t = p.timer->remainingTime();
+        int h = t / 3600000;
+        int m = t % 3600000 / 60000;
+        int s = t % 60000 / 1000;
+        int ms = t % 10;
+        QString str;
+        str.sprintf("%1d:%02d:%02d.%1d", h, m, s, ms);
         if (activeTimer == 1) {
-            ui->dial->setValue(r);
+//            ui->dial->setValue(r);
+            ui->lbTimer1->setText(str);
         } else if (activeTimer == 2) {
-            ui->dial2->setValue(r);
+//            ui->dial2->setValue(r);
+            ui->lbTimer2->setText(str);
         } else if (activeTimer == 3) {
-            ui->dial3->setValue(r);
+//            ui->dial3->setValue(r);
+            ui->lbTimer3->setText(str);
         } else {
             qDebug("!!!!!!!!!!!!!!");
         }
@@ -450,7 +455,6 @@ void Widget::on_tbSelectBkg_clicked()
     selectColor(ui->tbSelectBkg, p.background);
 }
 
-
 void Widget::on_tbSelectClr_clicked()
 {
     selectColor(ui->tbSelectClr, p.color);
@@ -464,4 +468,19 @@ void Widget::on_tbSelectCmd1Bkg_clicked()
 void Widget::on_tbSelectCmd2Bkg_clicked()
 {
     selectColor(ui->tbSelectCmd2Bkg, p.command2Bkg);
+}
+
+void Widget::on_tbSelecTmrClr_clicked()
+{
+    selectColor(ui->tbSelecTmrClr, p.timerColor);
+}
+
+void Widget::on_tbSelectFoulClrGreen_clicked()
+{
+    selectColor(ui->tbSelectFoulClrGreen, p.foulGreenColor);
+}
+
+void Widget::on_tbSelectFoulClrRed_clicked()
+{
+    selectColor(ui->tbSelectFoulClrRed, p.foulRedColor);
 }

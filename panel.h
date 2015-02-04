@@ -31,10 +31,14 @@ public:
     static QString color;
     static QString command1Bkg;
     static QString command2Bkg;
+    static QString timerColor;
+    static QString foulGreenColor;
+    static QString foulRedColor;
 
     static float ratio;
 
     static QTimer *timer;
+    static int elapsedTime;
     static int remainingTime;
 
     static void init();

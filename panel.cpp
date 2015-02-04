@@ -46,8 +46,8 @@ void Panel::init()
 
     champNameFontSize = 20;
     commandFontSize = 30;
-    matchFontSize = 45;
-    scoreFontSize = 70;
+    matchFontSize = 40;
+    scoreFontSize = 65;
     foulFontSize = 55;
     timerFontSize = 90;
 
@@ -55,9 +55,14 @@ void Panel::init()
     color = "#ffffff";
     command1Bkg = "#005500";
     command2Bkg = "#00007f";
+    timerColor = "#aaff7f";
+    foulGreenColor = "#00aa00";
+    foulRedColor = "#aa0000";
 
     ratio = 4.0 / 3.0;
+
     timer = new QTimer();
     timer->setSingleShot(true);
     remainingTime = 0;
+    elapsedTime = 0;
 }

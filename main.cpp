@@ -20,9 +20,13 @@ QString Panel::background;
 QString Panel::color;
 QString Panel::command1Bkg;
 QString Panel::command2Bkg;
+QString Panel::timerColor;
+QString Panel::foulGreenColor;
+QString Panel::foulRedColor;
 float Panel::ratio;
 QTimer *Panel::timer;
 int Panel::remainingTime;
+int Panel::elapsedTime;
 
 int main(int argc, char *argv[])
 {

@@ -40,34 +40,6 @@
   <property name="windowTitle">
    <string>Табло</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">* {
-font: 900 30px &quot;Arial&quot;;
-background-color: &quot;#312448&quot;;
-color: &quot;#ffffff&quot;;
-margin: 2px;
-border-color: &quot;#ffffff&quot;;
-border-width: 2px;
-border-style: solid;
-border-radius: 10px;
-}
-#Dialog, #lbScoreDivisor {
-border-width: 0;
-}
-#lbLogo {
-border-color: rgb(49, 36, 72);
-}
-#lbFoul1, #lbFoul2 {
-margin: 15px;
-}
-#lbFoul1:enabled, #lbFoul2:enabled {
-background-color: &quot;#c0439163&quot;;
-}
-#lbFoul1:disabled, #lbFoul2:disabled {
-background-color: &quot;#c098514e&quot;;
-}
-</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,2,3,4">
    <property name="spacing">
     <number>0</number>

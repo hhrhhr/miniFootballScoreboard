@@ -20,6 +20,8 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
+    void toggleFScb(bool state);
+
 private slots:
     void on_btOpenLogo_clicked();
     void on_btApply_clicked();
@@ -34,7 +36,6 @@ private slots:
     void on_rb43_toggled(bool checked);
     void on_rb1610_toggled(bool checked);
     void on_rb169_toggled(bool checked);
-    void on_cbFullScreen_toggled(bool checked);
 
     void on_btApplyScore_clicked();
     void on_btResetScore_clicked();
@@ -49,12 +50,12 @@ private slots:
     void onRefresh();
 
     void on_tbSelectBkg_clicked();
-
     void on_tbSelectClr_clicked();
-
     void on_tbSelectCmd1Bkg_clicked();
-
     void on_tbSelectCmd2Bkg_clicked();
+    void on_tbSelecTmrClr_clicked();
+    void on_tbSelectFoulClrGreen_clicked();
+    void on_tbSelectFoulClrRed_clicked();
 
 protected:
     void closeEvent(QCloseEvent *event);

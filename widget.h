@@ -59,10 +59,12 @@ private slots:
 
     void onColorSelected(QColor color);
 
-    void on_tbFontAllBold_toggled(bool checked);
-    void on_tbFontAllItalic_toggled(bool checked);
-    void on_tbFontCommandBold_toggled(bool checked);
-    void on_tbFontCommandItalic_toggled(bool checked);
+    void on_cbFont_currentFontChanged(const QFont &fnt);
+    void on_cbFont2_currentFontChanged(const QFont &fnt);
+    void on_tbFontBold_toggled(bool checked);
+    void on_tbFontItalic_toggled(bool checked);
+    void on_tbFont2Bold_toggled(bool checked);
+    void on_tbFont2Italic_toggled(bool checked);
 
 protected:
     void closeEvent(QCloseEvent *event);

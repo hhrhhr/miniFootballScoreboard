@@ -24,27 +24,41 @@ Widget::Widget(QWidget *parent) :
     ui->sbScore2->setValue(p.command2Score);
     ui->sbFoul2->setValue(p.command2Foul);
 
-    ui->sbChampName->setValue(p.champNameFontSize);
-    ui->sbCommand->setValue(p.commandFontSize);
-    ui->sbMatch->setValue(p.matchFontSize);
-    ui->sbFoul->setValue(p.foulFontSize);
-    ui->sbScore->setValue(p.scoreFontSize);
-    ui->sbTimer->setValue(p.timerFontSize);
+    ui->cbFont->setCurrentFont(QFont(p.fontName));
+    ui->cbFont2->setCurrentFont(QFont(p.font2Name));
+    ui->tbFontBold->setChecked(QString::compare(p.fontWeight, "bold") == 0);
+    ui->tbFont2Bold->setChecked(QString::compare(p.font2Weight, "bold") == 0);
+    ui->tbFontItalic->setChecked(QString::compare(p.fontStyle, "italic") == 0);
+    ui->tbFont2Italic->setChecked(QString::compare(p.font2Style, "italic") == 0);
+
+    ui->sbChampName->setValue(p.champNameFontSz);
+    ui->sbCommand->setValue(p.commandFontSz);
+    ui->sbMatch->setValue(p.matchFontSz);
+    ui->sbFoul->setValue(p.foulFontSz);
+    ui->sbScore->setValue(p.scoreFontSz);
+    ui->sbTimer->setValue(p.timerFontSz);
 
     QString c;
     c.sprintf("background-color: \"%s\";", p.background.toLatin1().data());
     ui->tbSelectBkg->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.color.toLatin1().data());
     ui->tbSelectClr->setStyleSheet(c);
+
+    c.sprintf("background-color: \"%s\";", p.command1Clr.toLatin1().data());
+    ui->tbSelectCmd1Clr->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.command1Bkg.toLatin1().data());
     ui->tbSelectCmd1Bkg->setStyleSheet(c);
+    c.sprintf("background-color: \"%s\";", p.command2Clr.toLatin1().data());
+    ui->tbSelectCmd2Clr->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.command2Bkg.toLatin1().data());
     ui->tbSelectCmd2Bkg->setStyleSheet(c);
-    c.sprintf("background-color: \"%s\";", p.timerColor.toLatin1().data());
+
+    c.sprintf("background-color: \"%s\";", p.timerClr.toLatin1().data());
     ui->tbSelecTmrClr->setStyleSheet(c);
-    c.sprintf("background-color: \"%s\";", p.foulGreenColor.toLatin1().data());
+
+    c.sprintf("background-color: \"%s\";", p.foulGreenBkg.toLatin1().data());
     ui->tbSelectFoulClrGreen->setStyleSheet(c);
-    c.sprintf("background-color: \"%s\";", p.foulRedColor.toLatin1().data());
+    c.sprintf("background-color: \"%s\";", p.foulRedBkg.toLatin1().data());
     ui->tbSelectFoulClrRed->setStyleSheet(c);
 
     ui->btOpenLogo->setFocus();
@@ -103,37 +117,37 @@ void Widget::closeEvent(QCloseEvent *event)
 
 void Widget::on_sbChampName_valueChanged(int arg1)
 {
-    p.champNameFontSize = arg1;
+    p.champNameFontSz = arg1;
     if (f) f->changeFonts();
 }
 
 void Widget::on_sbCommand_valueChanged(int arg1)
 {
-    p.commandFontSize = arg1;
+    p.commandFontSz = arg1;
     if (f) f->changeFonts();
 }
 
 void Widget::on_sbMatch_valueChanged(int arg1)
 {
-    p.matchFontSize = arg1;
+    p.matchFontSz = arg1;
     if (f) f->changeFonts();
 }
 
 void Widget::on_sbScore_valueChanged(int arg1)
 {
-    p.scoreFontSize = arg1;
+    p.scoreFontSz = arg1;
     if (f) f->changeFonts();
 }
 
 void Widget::on_sbFoul_valueChanged(int arg1)
 {
-    p.foulFontSize = arg1;
+    p.foulFontSz = arg1;
     if (f) f->changeFonts();
 }
 
 void Widget::on_sbTimer_valueChanged(int arg1)
 {
-    p.timerFontSize = arg1;
+    p.timerFontSz = arg1;
     if (f) f->changeFonts();
 }
 
@@ -371,8 +385,8 @@ void Widget::onColorSelected(QColor color)
         c.sprintf("background-color: \"%s\";", p.background.toLatin1().data());
         ui->btApply->setStyleSheet(c);
     }
-
-    f->changeFonts();
+    if (f)
+        f->changeFonts();
 
 }
 
@@ -398,54 +412,84 @@ void Widget::on_tbSelectCmd2Bkg_clicked()
 
 void Widget::on_tbSelecTmrClr_clicked()
 {
-    selectColor(ui->tbSelecTmrClr, p.timerColor);
+    selectColor(ui->tbSelecTmrClr, p.timerClr);
 }
 
 void Widget::on_tbSelectFoulClrGreen_clicked()
 {
-    selectColor(ui->tbSelectFoulClrGreen, p.foulGreenColor);
+    selectColor(ui->tbSelectFoulClrGreen, p.foulGreenBkg);
 }
 
 void Widget::on_tbSelectFoulClrRed_clicked()
 {
-    selectColor(ui->tbSelectFoulClrRed, p.foulRedColor);
+    selectColor(ui->tbSelectFoulClrRed, p.foulRedBkg);
 }
+
 
 /* fonts */
 
-void Widget::on_tbFontAllBold_toggled(bool checked)
+void Widget::on_cbFont_currentFontChanged(const QFont &fnt)
 {
-    if (checked) {
-        ui->tbFontAllBold->setStyleSheet("font-weight: bold;");
-    } else {
-        ui->tbFontAllBold->setStyleSheet("font-weight: normal;");
-    }
+    p.fontName = fnt.family();
+    if (f)
+        f->changeFonts();
 }
 
-void Widget::on_tbFontAllItalic_toggled(bool checked)
+void Widget::on_cbFont2_currentFontChanged(const QFont &fnt)
 {
-    if (checked) {
-        ui->tbFontAllItalic->setStyleSheet("font-style: italic;");
-    } else {
-        ui->tbFontAllItalic->setStyleSheet("font-style: normal;");
-    }
-
+    p.font2Name = fnt.family();
+    if (f)
+        f->changeFonts();
 }
 
-void Widget::on_tbFontCommandBold_toggled(bool checked)
+void Widget::on_tbFontBold_toggled(bool checked)
 {
     if (checked) {
-        ui->tbFontCommandBold->setStyleSheet("font-weight: bold;");
+        ui->tbFontBold->setStyleSheet("font-weight: bold;");
+        p.fontWeight = "bold";
     } else {
-        ui->tbFontCommandBold->setStyleSheet("font-weight: normal;");
+        ui->tbFontBold->setStyleSheet("font-weight: normal;");
+        p.fontWeight = "normal";
     }
+    if (f)
+        f->changeFonts();
 }
 
-void Widget::on_tbFontCommandItalic_toggled(bool checked)
+void Widget::on_tbFontItalic_toggled(bool checked)
 {
     if (checked) {
-        ui->tbFontCommandItalic->setStyleSheet("font-style: italic;");
+        ui->tbFontItalic->setStyleSheet("font-style: italic;");
+        p.fontStyle = "italic";
     } else {
-        ui->tbFontCommandItalic->setStyleSheet("font-style: normal;");
+        ui->tbFontItalic->setStyleSheet("font-style: normal;");
+        p.fontStyle = "normal";
     }
+    if (f)
+        f->changeFonts();
+}
+
+void Widget::on_tbFont2Bold_toggled(bool checked)
+{
+    if (checked) {
+        ui->tbFont2Bold->setStyleSheet("font-weight: bold;");
+        p.font2Weight = "bold";
+    } else {
+        ui->tbFont2Bold->setStyleSheet("font-weight: normal;");
+        p.font2Weight = "normal";
+    }
+    if (f)
+        f->changeFonts();
+}
+
+void Widget::on_tbFont2Italic_toggled(bool checked)
+{
+    if (checked) {
+        ui->tbFont2Italic->setStyleSheet("font-style: italic;");
+        p.font2Style = "italic";
+    } else {
+        ui->tbFont2Italic->setStyleSheet("font-style: normal;");
+        p.font2Style = "normal";
+    }
+    if (f)
+        f->changeFonts();
 }

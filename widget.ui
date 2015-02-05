@@ -14,9 +14,7 @@
    <string>Панель настройки</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QVBoxLayout: {margin: 0px}
-QHBoxLayout: {margin: 0px}
-*:focus {background-color: rgb(85, 255, 127)}
+   <string notr="true">*:focus {background-color: rgb(85, 255, 127)}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -238,7 +236,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QFontComboBox" name="fontComboBox">
+           <widget class="QFontComboBox" name="cbFont">
             <property name="frame">
              <bool>true</bool>
             </property>
@@ -259,7 +257,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="tbFontAllBold">
+           <widget class="QToolButton" name="tbFontBold">
             <property name="text">
              <string>B</string>
             </property>
@@ -269,7 +267,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="tbFontAllItalic">
+           <widget class="QToolButton" name="tbFontItalic">
             <property name="text">
              <string>I</string>
             </property>
@@ -290,7 +288,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QFontComboBox" name="fontComboBox_2">
+           <widget class="QFontComboBox" name="cbFont2">
             <property name="writingSystem">
              <enum>QFontDatabase::Cyrillic</enum>
             </property>
@@ -306,7 +304,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="tbFontCommandBold">
+           <widget class="QToolButton" name="tbFont2Bold">
             <property name="text">
              <string>B</string>
             </property>
@@ -316,7 +314,7 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="tbFontCommandItalic">
+           <widget class="QToolButton" name="tbFont2Italic">
             <property name="text">
              <string>I</string>
             </property>
@@ -326,6 +324,13 @@ QHBoxLayout: {margin: 0px}
            </widget>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayout_2">
@@ -545,13 +550,6 @@ QHBoxLayout: {margin: 0px}
            <widget class="QLabel" name="label_27">
             <property name="text">
              <string>Фол &quot;красный&quot;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="QToolButton" name="tbSelecTmrBkg">
-            <property name="text">
-             <string>...</string>
             </property>
            </widget>
           </item>
@@ -802,35 +800,31 @@ QHBoxLayout: {margin: 0px}
          <number>5</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
-          <item>
-           <widget class="QTimeEdit" name="timeEdit">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="displayFormat">
-             <string>H:mm:ss</string>
-            </property>
-            <property name="time">
-             <time>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>10</second>
-             </time>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lbTimer1">
-            <property name="text">
-             <string>00:00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTimeEdit" name="timeEdit">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="displayFormat">
+           <string>H:mm:ss</string>
+          </property>
+          <property name="time">
+           <time>
+            <hour>0</hour>
+            <minute>0</minute>
+            <second>10</second>
+           </time>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbTimer1">
+          <property name="text">
+           <string>00:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_8">
@@ -924,38 +918,34 @@ QHBoxLayout: {margin: 0px}
          <number>5</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
-          <item>
-           <widget class="QTimeEdit" name="timeEdit2">
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="currentSection">
-             <enum>QDateTimeEdit::HourSection</enum>
-            </property>
-            <property name="displayFormat">
-             <string>H:mm:ss</string>
-            </property>
-            <property name="time">
-             <time>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>5</second>
-             </time>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lbTimer2">
-            <property name="text">
-             <string>00:00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTimeEdit" name="timeEdit2">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="currentSection">
+           <enum>QDateTimeEdit::HourSection</enum>
+          </property>
+          <property name="displayFormat">
+           <string>H:mm:ss</string>
+          </property>
+          <property name="time">
+           <time>
+            <hour>0</hour>
+            <minute>0</minute>
+            <second>5</second>
+           </time>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbTimer2">
+          <property name="text">
+           <string>00:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_9">
@@ -994,7 +984,7 @@ QHBoxLayout: {margin: 0px}
            <item>
             <widget class="QRadioButton" name="radioButton_4">
              <property name="text">
-              <string>--&gt;</string>
+              <string>&lt;--</string>
              </property>
             </widget>
            </item>

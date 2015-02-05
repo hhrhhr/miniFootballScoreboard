@@ -3,61 +3,78 @@
 /*
 
  * {
-font: 900 30px "Arial";
-background-color: "#312448";
-color: "#ffffff";
-margin: 2px;
-border-color: "#ffffff";
-border-width: 2px;
-border-style: solid;
-border-radius: 10px;
+    font-family: "Arial Black"
+    font-size: 30px;
+    font-style: normal;
+    font-weight: bold;
+
+    background-color: "#312448";
+    color: "#ffffff";
+
+    margin: 2px;
+    border-color: "#ffffff";
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
 }
 #Dialog, #lbScoreDivisor {
-border-width: 0;
+    border-width: 0;
 }
 #lbLogo {
-border-color: rgb(49, 36, 72);
+    border-color: rgb(49, 36, 72);
 }
 #lbFoul1, #lbFoul2 {
-margin: 15px;
+    margin: 15px;
 }
 #lbFoul1:enabled, #lbFoul2:enabled {
-background-color: "#c0439163";
+    background-color: "#c0439163";
 }
 #lbFoul1:disabled, #lbFoul2:disabled {
-background-color: "#c098514e";
+    background-color: "#c098514e";
 }
 
 */
 
 void Panel::init()
 {
-    logoPath = QString(":/logo.png");
+    logoPath = ":/logo.png";
 
-    champName = QString("Чемпионат Антарктиды 2022");
-    command1 = QString("Зеленые Тюлени");
-    command2 = QString("Синие Пингвины");
+    champName = "Чемпионат Антарктиды 2022";
+    command1 = "Зеленые Тюлени";
+    command2 = "Синие Пингвины";
+
+    fontName = "Arial";
+    fontWeight = "bold";
+    fontStyle = "normal";
+    font2Name = "Tahoma";
+    font2Weight = "normal";
+    font2Style = "italic";
 
     match = 1;
+    command1Foul = 0;
     command1Score = 0;
     command2Score = 0;
     command1Foul = 0;
-    command1Foul = 0;
 
-    champNameFontSize = 20;
-    commandFontSize = 30;
-    matchFontSize = 40;
-    scoreFontSize = 65;
-    foulFontSize = 55;
-    timerFontSize = 90;
+    champNameFontSz = 30;
+    commandFontSz = 25;
+    matchFontSz = 40;
+    scoreFontSz = 65;
+    foulFontSz = 45;
+    timerFontSz = 80;
 
-    background = "#312448";
     color = "#ffffff";
+    background = "#312448";
+
+    command1Clr = color;
     command1Bkg = "#005500";
+    command2Clr = color;
     command2Bkg = "#00007f";
-    timerColor = "#aaff7f";
-    foulGreenColor = "#00aa00";
-    foulRedColor = "#aa0000";
+
+    timerClr = "#aaff7f";
+
+    foulGreenBkg = "#00aa00";
+    foulRedBkg = "#aa0000";
 
     ratio = 4.0 / 3.0;
 

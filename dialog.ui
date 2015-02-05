@@ -40,6 +40,30 @@
   <property name="windowTitle">
    <string>Табло (двойной щелчок - полный экран)</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+font: bold normal 30px &quot;Arial Black&quot;;
+background-color: &quot;#312448&quot;;
+color: &quot;#ffffff&quot;;
+margin: 2px;
+border-color: &quot;#ffffff&quot;;
+border-width: 2px;
+border-style: solid;
+border-radius: 7px;
+}
+#lbChampName, #lbCommand1, #lbCommand2 {font: normal italic 30 &quot;Arial&quot;}
+#lbCommand1, #lbCommand2 {font-size: 25px;}
+#lbCommand1 {background-color: &quot;#005500&quot;; color: &quot;#ffffff&quot;}
+#lbCommand2 {background-color: &quot;#00007f&quot;; color: &quot;#ffffff&quot;}
+#lbMatch {font-size: 40px;}
+#lbFoul1, #lbFoul2 {font-size: 45px; margin: 15px;}
+#lbFoul1:enabled, #lbFoul2:enabled {background-color: &quot;#00aa00&quot;;}
+#lbFoul1:disabled, #lbFoul2:disabled {background-color: &quot;#aa0000&quot;;}
+#lbScore1, #lbScore2, #lbScoreDivisor {font-size: 65px;}
+#lbTimer {font-size: 80px; background-color: &quot;#312448&quot;; color: &quot;#aaff7f&quot;;}
+#Dialog, #lbScoreDivisor {border-width: 0;}
+#lbLogo {border-color: &quot;#312448&quot;;}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,2,3,4">
    <property name="spacing">
     <number>0</number>
@@ -134,7 +158,7 @@
      <item>
       <widget class="QLabel" name="lbFoul1">
        <property name="text">
-        <string>5</string>
+        <string>4</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -177,7 +201,7 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>6</string>
+        <string>5</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

@@ -2,7 +2,7 @@
 #define PANEL_H
 
 #include <QString>
-#include <QTimer>
+#include <QElapsedTimer>
 #include <QRgb>
 
 class Panel
@@ -49,9 +49,11 @@ public:
 
     static float ratio;
 
-    static QTimer *timer;
-    static int elapsedTime;
+    static QElapsedTimer *timer;
+    static bool isTimerBack;
+    static int timeout;
     static int remainingTime;
+    static QString timeFormat;
 
     static void init();
 };

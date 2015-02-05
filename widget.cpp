@@ -61,6 +61,9 @@ Widget::Widget(QWidget *parent) :
     c.sprintf("background-color: \"%s\";", p.foulRedBkg.toLatin1().data());
     ui->tbSelectFoulClrRed->setStyleSheet(c);
 
+    ui->leTimeFormat->setText(p.timeFormat);
+    ui->rbTimerBack->setChecked(p.isTimerBack);
+
     ui->btOpenLogo->setFocus();
 
     this->move(200, 50);
@@ -72,11 +75,9 @@ Widget::Widget(QWidget *parent) :
     p.remainingTime = 0;
     activeTimer = 1;
 
-    connect(p.timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
-
     refresh = new QTimer(this);
     connect(refresh, SIGNAL(timeout()), this, SLOT(onRefresh()));
-    refresh->start(500);
+    refresh->start(333);
 
 }
 
@@ -94,7 +95,7 @@ void Widget::on_btOpenLogo_clicked()
             QFileDialog::getOpenFileName(this,
                                          QString("Выберите логотип"),
                                          QDir::currentPath(),
-                                         QString("Images (*.png *.jpg);;PNG (*.png);;JPEG (*.jpg)"));
+                                         QString("Images (*.bmp *.png *.jpg *.jpeg)"));
     if (!path.isEmpty()) {
         p.logoPath = path;
         ui->lbLogo->setStyleSheet(QString("image: url(\"%1\");").arg(path));
@@ -181,42 +182,42 @@ void Widget::on_rb169_toggled(bool checked)
 
 void Widget::on_btResetScore_clicked()
 {
-    if (f) {
-        p.match = 1;
-        p.command1Foul = 0;
-        p.command1Score = 0;
-        p.command2Score = 0;
-        p.command2Foul = 0;
+    p.match = 1;
+    p.command1Foul = 0;
+    p.command1Score = 0;
+    p.command2Score = 0;
+    p.command2Foul = 0;
 
-        ui->sbMatchN->setValue(p.match);
-        ui->sbFoul1->setValue(p.command1Foul);
-        ui->sbScore1->setValue(p.command1Score);
-        ui->sbScore2->setValue(p.command2Score);
-        ui->sbFoul2->setValue(p.command2Foul);
+    ui->sbMatchN->setValue(p.match);
+    ui->sbFoul1->setValue(p.command1Foul);
+    ui->sbScore1->setValue(p.command1Score);
+    ui->sbScore2->setValue(p.command2Score);
+    ui->sbFoul2->setValue(p.command2Foul);
 
+    if (f)
         f->changeScore();
 
-        ui->btStart->setFocus();
-    }
+    ui->tbSetFocus->setText("<-");
+    ui->btStart->setFocus();
 }
 
 void Widget::on_btApplyScore_clicked()
 {
-    if (f) {
-        p.match = ui->sbMatchN->value();
-        p.command1Foul = ui->sbFoul1->value();
-        p.command1Score = ui->sbScore1->value();
-        p.command2Score = ui->sbScore2->value();
-        p.command2Foul = ui->sbFoul2->value();
+    p.match = ui->sbMatchN->value();
+    p.command1Foul = ui->sbFoul1->value();
+    p.command1Score = ui->sbScore1->value();
+    p.command2Score = ui->sbScore2->value();
+    p.command2Foul = ui->sbFoul2->value();
+
+    if (f)
         f->changeScore();
 
-        if (activeTimer == 1) {
-            ui->btStart->setFocus();
-        } else if (activeTimer == 2) {
-            ui->btStart2->setFocus();
-        } else {
-            qDebug("!!!!!!!!!!!!!!");
-        }
+    if (activeTimer == 1) {
+        ui->btStart->setFocus();
+    } else if (activeTimer == 2) {
+        ui->btStart2->setFocus();
+    } else {
+        qDebug("!!!!!!!!!!!!!!");
     }
 }
 
@@ -224,29 +225,30 @@ void Widget::on_btStart_clicked()
 {
     ui->btStop->setEnabled(true);
     ui->btStop2->setEnabled(false);
-
-//    ui->btStart->setEnabled(true);
+    ui->btStart->setEnabled(true);
     ui->btStart2->setEnabled(false);
-
     ui->btResetScore->setEnabled(false);
+    ui->tbSetFocus->setText("<-");
 
-    if (p.timer->isActive()) {
+    ui->gbInputData->setEnabled(false);
+    ui->gbStyle->setEnabled(false);
+    ui->gbTimer->setEnabled(false);
+
+    if (p.timer->isValid()) {
         ui->btStart->setText(QString("Старт"));
-        p.remainingTime = p.timer->remainingTime();
-        p.timer->stop();
+        p.remainingTime = p.timeout - p.timer->elapsed();
+        p.timer->invalidate();
     } else {
         ui->btStart->setText(QString("Пауза"));
         if (p.remainingTime > 0) {
-            p.timer->start(p.remainingTime);
+            p.timeout = p.remainingTime;
+            p.timer->start();
         } else {
-            QTime t = ui->timeEdit->time();
-            int ms = t.hour() * 3600 + t.minute() * 60 + t.second();
-            ms *= 1000;
+            int ms = ui->timeEdit->time().msecsSinceStartOfDay();
+            p.timeout = ms;
             p.remainingTime = ms;
             activeTimer = 1;
-//            ui->dial->setMaximum(ms);
-//            ui->dial->setTickInterval((int) ms / 8);
-            p.timer->start(ms);
+            p.timer->start();
         }
     }
 
@@ -255,21 +257,22 @@ void Widget::on_btStart_clicked()
 
 void Widget::on_btStop_clicked()
 {
-    p.timer->stop();
+    p.timer->invalidate();
     p.remainingTime = 0;
-//    ui->dial->setValue(0);
-    ui->lbTimer1->setText("00:00");
+    ui->lbTimer->setText(QTime(0, 0).toString(ui->leTimeFormat->text()));
 
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(false);
-
     ui->btStart->setEnabled(true);
     ui->btStart2->setEnabled(true);
+    ui->btResetScore->setEnabled(true);
+
+    ui->gbInputData->setEnabled(true);
+    ui->gbStyle->setEnabled(true);
+    ui->gbTimer->setEnabled(true);
 
     ui->btStart->setText(QString("Старт"));
     ui->btStart2->setText(QString("Старт"));
-
-    ui->btResetScore->setEnabled(true);
 
     ui->btStart->setFocus();
 }
@@ -279,29 +282,30 @@ void Widget::on_btStart2_clicked()
 {
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(true);
-
     ui->btStart->setEnabled(false);
-//    ui->btStart2->setEnabled(false);
-
+    ui->btStart2->setEnabled(true);
     ui->btResetScore->setEnabled(false);
+    ui->tbSetFocus->setText("->");
 
-    if (p.timer->isActive()) {
+    ui->gbInputData->setEnabled(false);
+    ui->gbStyle->setEnabled(false);
+    ui->gbTimer->setEnabled(false);
+
+    if (p.timer->isValid()) {
         ui->btStart2->setText(QString("Старт"));
-        p.remainingTime = p.timer->remainingTime();
-        p.timer->stop();
+        p.remainingTime = p.timeout - p.timer->elapsed();
+        p.timer->invalidate();
     } else {
         ui->btStart2->setText(QString("Пауза"));
         if (p.remainingTime > 0) {
-            p.timer->start(p.remainingTime);
+            p.timeout = p.remainingTime;
+            p.timer->start();
         } else {
-            QTime t = ui->timeEdit2->time();
-            int ms = t.hour() * 3600 + t.minute() * 60 + t.second();
-            ms *= 1000;
+            int ms = ui->timeEdit2->time().msecsSinceStartOfDay();
+            p.timeout = ms;
             p.remainingTime = ms;
             activeTimer = 2;
-//            ui->dial2->setMaximum(ms);
-//            ui->dial2->setTickInterval((int) ms / 8);
-            p.timer->start(ms);
+            p.timer->start();
         }
     }
 
@@ -310,21 +314,22 @@ void Widget::on_btStart2_clicked()
 
 void Widget::on_btStop2_clicked()
 {
-    p.timer->stop();
+    p.timer->invalidate();
     p.remainingTime = 0;
-//    ui->dial2->setValue(0);
-    ui->lbTimer2->setText("00:00");
+    ui->lbTimer2->setText(QTime(0, 0).toString(ui->leTimeFormat->text()));
 
     ui->btStop->setEnabled(false);
     ui->btStop2->setEnabled(false);
-
     ui->btStart->setEnabled(true);
     ui->btStart2->setEnabled(true);
+    ui->btResetScore->setEnabled(true);
+
+    ui->gbInputData->setEnabled(true);
+    ui->gbStyle->setEnabled(true);
+    ui->gbTimer->setEnabled(true);
 
     ui->btStart->setText(QString("Старт"));
     ui->btStart2->setText(QString("Старт"));
-
-    ui->btResetScore->setEnabled(true);
 
     ui->btStart2->setFocus();
 }
@@ -334,10 +339,20 @@ void Widget::onTimeout()
 {
     if (activeTimer == 1) {
         on_btStop_clicked();
-        ui->btStart2->setFocus();
+        if (ui->rbTimerStop->isChecked()) {
+            ui->btStart->setFocus();
+        } else {
+            ui->tbSetFocus->setText("->");
+            on_btStart2_clicked();
+        }
     } else if (activeTimer == 2) {
         on_btStop2_clicked();
-        ui->btStart->setFocus();
+        if (ui->rbTimer2Stop->isChecked()) {
+            ui->btStart2->setFocus();
+        } else {
+            ui->tbSetFocus->setText("<-");
+            on_btStart_clicked();
+        }
     } else {
         qDebug("!!!!!!!!!!!!!!");
     }
@@ -345,49 +360,37 @@ void Widget::onTimeout()
 
 void Widget::onRefresh()
 {
-    if (p.timer->isActive()) {
-        int t = p.timer->remainingTime();
-        int h = t / 3600000;
-        int m = t % 3600000 / 60000;
-        int s = t % 60000 / 1000;
-        int ms = t % 10;
-        QString str;
-        str.sprintf("%1d:%02d:%02d.%1d", h, m, s, ms);
-        if (activeTimer == 1) {
-//            ui->dial->setValue(r);
-            ui->lbTimer1->setText(str);
-        } else if (activeTimer == 2) {
-//            ui->dial2->setValue(r);
-            ui->lbTimer2->setText(str);
+    if (p.timer->isValid()) {
+        int t = p.timeout - p.timer->elapsed();
+        if (t > 0) {
+            if (!p.isTimerBack)
+                t = p.timer->elapsed();
+            QString str = QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat);
+
+            if (activeTimer == 1) {
+                ui->lbTimer->setText(str);
+            } else if (activeTimer == 2) {
+                ui->lbTimer2->setText(str);
+            } else {
+                qDebug("!!!!!!!!!!!!!!");
+            }
         } else {
-            qDebug("!!!!!!!!!!!!!!");
+            onTimeout();
         }
     }
 }
 
 void Widget::selectColor(QToolButton *b, QString &elem)
 {
-    QColorDialog *cd = new QColorDialog(this); //::getColor(elem, this, "Выберите цвет");
-    cd->setCurrentColor(elem);
-    cd->setOption(QColorDialog::ShowAlphaChannel);
-    cd->open(this, SLOT(onColorSelected(QColor)));
-}
-
-void Widget::onColorSelected(QColor color)
-{
-    qDebug() << color;
+    QColor color = QColorDialog::getColor(elem, this, "Выберите цвет", QColorDialog::ShowAlphaChannel);
     if (color.isValid()) {
-        p.background = color.name();
-
-        qDebug("%s", p.background.toLatin1().data());
-
+        elem = color.name(QColor::HexArgb);
         QString c;
-        c.sprintf("background-color: \"%s\";", p.background.toLatin1().data());
-        ui->btApply->setStyleSheet(c);
+        c.sprintf("background-color: \"%s\";", elem.toLatin1().data());
+        b->setStyleSheet(c);
     }
     if (f)
         f->changeFonts();
-
 }
 
 void Widget::on_tbSelectBkg_clicked()
@@ -405,9 +408,19 @@ void Widget::on_tbSelectCmd1Bkg_clicked()
     selectColor(ui->tbSelectCmd1Bkg, p.command1Bkg);
 }
 
+void Widget::on_tbSelectCmd1Clr_clicked()
+{
+    selectColor(ui->tbSelectCmd1Clr, p.command1Clr);
+}
+
 void Widget::on_tbSelectCmd2Bkg_clicked()
 {
     selectColor(ui->tbSelectCmd2Bkg, p.command2Bkg);
+}
+
+void Widget::on_tbSelectCmd2Clr_clicked()
+{
+    selectColor(ui->tbSelectCmd2Clr, p.command2Clr);
 }
 
 void Widget::on_tbSelecTmrClr_clicked()
@@ -481,6 +494,8 @@ void Widget::on_tbFont2Bold_toggled(bool checked)
         f->changeFonts();
 }
 
+/* */
+
 void Widget::on_tbFont2Italic_toggled(bool checked)
 {
     if (checked) {
@@ -492,4 +507,59 @@ void Widget::on_tbFont2Italic_toggled(bool checked)
     }
     if (f)
         f->changeFonts();
+}
+
+void Widget::on_tbSetFocus_clicked()
+{
+    if (activeTimer == 1) {
+        ui->btStart->setFocus();
+        ui->tbSetFocus->setText("<-");
+    } else if (activeTimer == 2) {
+        ui->btStart2->setFocus();
+        ui->tbSetFocus->setText("->");
+    } else {
+        qDebug("!!!!!!!!!!!!!!");
+    }
+}
+
+/* */
+
+void Widget::on_timeEdit_timeChanged(const QTime &time)
+{
+    if (p.isTimerBack)
+        ui->lbTimer->setText(time.toString(p.timeFormat));
+    else
+        ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
+}
+
+void Widget::on_timeEdit2_timeChanged(const QTime &time)
+{
+    if (p.isTimerBack)
+        ui->lbTimer2->setText(time.toString(ui->leTimeFormat->text()));
+    else
+        ui->lbTimer2->setText(QTime(0, 0).toString(ui->leTimeFormat->text()));
+}
+
+void Widget::on_leTimeFormat_textChanged(const QString &arg1)
+{
+    p.timeFormat = arg1;
+    if (p.isTimerBack) {
+        ui->lbTimer->setText(ui->timeEdit->time().toString(arg1));
+        ui->lbTimer2->setText(ui->timeEdit2->time().toString(arg1));
+    } else {
+        ui->lbTimer->setText(QTime(0, 0).toString(arg1));
+        ui->lbTimer2->setText(QTime(0, 0).toString(arg1));
+    }
+}
+
+void Widget::on_rbTimerBack_toggled(bool checked)
+{
+    p.isTimerBack = checked;
+    if (checked) {
+        ui->lbTimer->setText(ui->timeEdit->time().toString(p.timeFormat));
+        ui->lbTimer2->setText(ui->timeEdit2->time().toString(p.timeFormat));
+    } else {
+        ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
+        ui->lbTimer2->setText(QTime(0, 0).toString(p.timeFormat));
+    }
 }

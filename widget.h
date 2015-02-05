@@ -3,6 +3,7 @@
 
 #include "dialog.h"
 #include <QWidget>
+#include <QElapsedTimer>
 #include <QTimer>
 #include <QColorDialog>
 #include <QToolButton>
@@ -51,13 +52,13 @@ private slots:
 
     void on_tbSelectBkg_clicked();
     void on_tbSelectClr_clicked();
+    void on_tbSelectCmd1Clr_clicked();
     void on_tbSelectCmd1Bkg_clicked();
+    void on_tbSelectCmd2Clr_clicked();
     void on_tbSelectCmd2Bkg_clicked();
     void on_tbSelecTmrClr_clicked();
     void on_tbSelectFoulClrGreen_clicked();
     void on_tbSelectFoulClrRed_clicked();
-
-    void onColorSelected(QColor color);
 
     void on_cbFont_currentFontChanged(const QFont &fnt);
     void on_cbFont2_currentFontChanged(const QFont &fnt);
@@ -65,6 +66,13 @@ private slots:
     void on_tbFontItalic_toggled(bool checked);
     void on_tbFont2Bold_toggled(bool checked);
     void on_tbFont2Italic_toggled(bool checked);
+
+    void on_tbSetFocus_clicked();
+
+    void on_timeEdit_timeChanged(const QTime &time);
+    void on_timeEdit2_timeChanged(const QTime &time);
+    void on_leTimeFormat_textChanged(const QString &arg1);
+    void on_rbTimerBack_toggled(bool checked);
 
 protected:
     void closeEvent(QCloseEvent *event);

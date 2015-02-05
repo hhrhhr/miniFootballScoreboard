@@ -7,14 +7,18 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>430</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Панель настройки</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/mainwindow.ico</normaloff>:/mainwindow.ico</iconset>
+  </property>
   <property name="styleSheet">
-   <string notr="true">*:focus {background-color: rgb(85, 255, 127)}
+   <string notr="true">*:focus {background-color: rgba(85, 255, 127, 127)}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -36,11 +40,11 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QGroupBox" name="groupBox_12">
+      <widget class="QGroupBox" name="gbInputData">
        <property name="title">
         <string>Данные</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
         <property name="spacing">
          <number>2</number>
         </property>
@@ -57,7 +61,10 @@
          <number>5</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,0">
+         <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,2">
+          <property name="spacing">
+           <number>6</number>
+          </property>
           <item>
            <widget class="QLabel" name="lbLogo">
             <property name="minimumSize">
@@ -71,9 +78,6 @@
               <width>160</width>
               <height>160</height>
              </size>
-            </property>
-            <property name="toolTip">
-             <string>Двойной щелчок для изменения</string>
             </property>
             <property name="styleSheet">
              <string notr="true">image: url(:/logo.png);</string>
@@ -206,7 +210,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_10">
+      <widget class="QGroupBox" name="gbStyle">
        <property name="title">
         <string>Оформление</string>
        </property>
@@ -248,10 +252,10 @@
             </property>
             <property name="currentFont">
              <font>
-              <family>Arial Black</family>
+              <family>Arial</family>
               <pointsize>28</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
            </widget>
@@ -297,7 +301,7 @@
             </property>
             <property name="currentFont">
              <font>
-              <family>Arial</family>
+              <family>Tahoma</family>
               <pointsize>24</pointsize>
              </font>
             </property>
@@ -357,12 +361,6 @@
           </item>
           <item row="3" column="1">
            <widget class="QSpinBox" name="sbMatch">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="value">
              <number>11</number>
             </property>
@@ -384,12 +382,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QSpinBox" name="sbCommand">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="value">
              <number>11</number>
             </property>
@@ -411,6 +403,9 @@
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="label_8">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Размер</string>
             </property>
@@ -432,6 +427,9 @@
           </item>
           <item row="0" column="4">
            <widget class="QLabel" name="label_29">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Фон</string>
             </property>
@@ -446,6 +444,9 @@
           </item>
           <item row="0" column="3">
            <widget class="QLabel" name="label_18">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Цвет</string>
             </property>
@@ -453,6 +454,9 @@
           </item>
           <item row="0" column="2">
            <widget class="QLabel" name="label_17">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Элемент</string>
             </property>
@@ -460,6 +464,9 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Элемент</string>
             </property>
@@ -467,11 +474,8 @@
           </item>
           <item row="6" column="1">
            <widget class="QSpinBox" name="sbTimer">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+            <property name="maximum">
+             <number>149</number>
             </property>
             <property name="value">
              <number>11</number>
@@ -480,12 +484,6 @@
           </item>
           <item row="1" column="1">
            <widget class="QSpinBox" name="sbChampName">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="value">
              <number>11</number>
             </property>
@@ -528,12 +526,6 @@
           </item>
           <item row="5" column="1">
            <widget class="QSpinBox" name="sbScore">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="value">
              <number>11</number>
             </property>
@@ -569,12 +561,6 @@
           </item>
           <item row="4" column="1">
            <widget class="QSpinBox" name="sbFoul">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="value">
              <number>11</number>
             </property>
@@ -602,178 +588,188 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="2,1,1,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1,0,1,1">
      <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="title">
-        <string>Таймер</string>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="spacing">
+        <number>5</number>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0">
-        <property name="spacing">
-         <number>2</number>
-        </property>
-        <property name="leftMargin">
-         <number>5</number>
-        </property>
-        <property name="topMargin">
-         <number>5</number>
-        </property>
-        <property name="rightMargin">
-         <number>5</number>
-        </property>
-        <property name="bottomMargin">
-         <number>5</number>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QGroupBox" name="gbTimer">
+         <property name="title">
+          <string>Таймер</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
           <item>
-           <widget class="QRadioButton" name="radioButton_7">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QRadioButton" name="rbTimerBack">
+              <property name="text">
+               <string>Обратный</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_8">
+              <property name="text">
+               <string>Прямой</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="QLabel" name="label_28">
+              <property name="text">
+               <string>Формат</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="leTimeFormat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;H - часы без ведущего нуля&lt;br/&gt;HH - часы с ведущим нулём&lt;br/&gt;mm - минуты&lt;br/&gt;ss - секунды&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>mm:ss</string>
+              </property>
+              <property name="maxLength">
+               <number>12</number>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>HH:mm:ss</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>Звук по окончании</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item>
+           <widget class="QToolButton" name="tbSelectSound">
             <property name="text">
-             <string>Обратный</string>
+             <string>Выбрать...</string>
             </property>
-            <property name="checked">
-             <bool>true</bool>
+            <property name="checkable">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_8">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <widget class="QPushButton" name="pbPlaySound">
             <property name="text">
-             <string>Прямой</string>
+             <string>Проиграть</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>Сирена</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
           <item>
-           <widget class="QLabel" name="label_28">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <widget class="QToolButton" name="rbSelectSound2">
             <property name="text">
-             <string>Формат</string>
+             <string>Выбрать...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;H - часы без ведущего нуля&lt;br/&gt;HH - часы с ведущим нулём&lt;br/&gt;mm - минуты&lt;br/&gt;ss - секунды&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
+           <widget class="QPushButton" name="pbPlaySound2">
             <property name="text">
-             <string>mm:ss</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-            <property name="placeholderText">
-             <string>HH:mm:ss</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>true</bool>
+             <string>Проиграть</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_11">
-          <property name="title">
-           <string>Звук по окончании</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_14">
-           <property name="spacing">
-            <number>5</number>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <property name="topMargin">
-            <number>5</number>
-           </property>
-           <property name="rightMargin">
-            <number>5</number>
-           </property>
-           <property name="bottomMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QToolButton" name="toolButton_5">
-             <property name="text">
-              <string>Выбрать...</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>Проиграть</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_13">
-          <property name="title">
-           <string>Сирена</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_16">
-           <property name="spacing">
-            <number>5</number>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <property name="topMargin">
-            <number>5</number>
-           </property>
-           <property name="rightMargin">
-            <number>5</number>
-           </property>
-           <property name="bottomMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QToolButton" name="toolButton_6">
-             <property name="text">
-              <string>Выбрать...</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_2">
-             <property name="text">
-              <string>Проиграть</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QGroupBox" name="groupBox_5">
@@ -785,7 +781,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <property name="spacing">
-         <number>2</number>
+         <number>5</number>
         </property>
         <property name="leftMargin">
          <number>5</number>
@@ -817,19 +813,25 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="lbTimer1">
+         <widget class="QLabel" name="lbTimer">
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Courier&quot;;</string>
+          </property>
           <property name="text">
            <string>00:00</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_8">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="title">
            <string>Поведение</string>
@@ -851,7 +853,10 @@
             <number>5</number>
            </property>
            <item>
-            <widget class="QRadioButton" name="radioButton">
+            <widget class="QRadioButton" name="rbTimerStop">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании ничего не делать&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Стоп</string>
              </property>
@@ -862,6 +867,9 @@
            </item>
            <item>
             <widget class="QRadioButton" name="radioButton_2">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании запустить таймер перерыва&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>--&gt;</string>
              </property>
@@ -891,6 +899,36 @@
       </widget>
      </item>
      <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="bottomMargin">
+        <number>32</number>
+       </property>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="tbSetFocus">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Установить фокус на кнопку &amp;quot;Старт/Пауза&amp;quot; текущего таймера&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;-</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <widget class="QGroupBox" name="groupBox_6">
        <property name="title">
         <string>Перерыв</string>
@@ -903,7 +941,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <property name="spacing">
-         <number>2</number>
+         <number>5</number>
         </property>
         <property name="leftMargin">
          <number>5</number>
@@ -939,6 +977,9 @@
         </item>
         <item>
          <widget class="QLabel" name="lbTimer2">
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Courier&quot;;</string>
+          </property>
           <property name="text">
            <string>00:00</string>
           </property>
@@ -950,7 +991,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox_9">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="title">
            <string>Поведение</string>
@@ -972,7 +1013,10 @@
             <number>5</number>
            </property>
            <item>
-            <widget class="QRadioButton" name="radioButton_3">
+            <widget class="QRadioButton" name="rbTimer2Stop">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании ничего не делать&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Стоп</string>
              </property>
@@ -983,6 +1027,9 @@
            </item>
            <item>
             <widget class="QRadioButton" name="radioButton_4">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании запустить следующий таймер&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>&lt;--</string>
              </property>
@@ -1043,16 +1090,22 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label_5">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
-             <string>Матч</string>
+             <string>Тайм</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="2">
            <widget class="QSpinBox" name="sbMatchN">
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -1072,6 +1125,9 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_13">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Фолы 1</string>
             </property>
@@ -1080,8 +1136,11 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="2">
            <widget class="QLabel" name="label_16">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Фолы 2</string>
             </property>
@@ -1092,6 +1151,12 @@
           </item>
           <item row="2" column="0">
            <widget class="QSpinBox" name="sbFoul1">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -1109,8 +1174,11 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="2">
            <widget class="QSpinBox" name="sbFoul2">
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -1130,6 +1198,9 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_14">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Счет 1</string>
             </property>
@@ -1138,8 +1209,11 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="3" column="2">
            <widget class="QLabel" name="label_15">
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
             <property name="text">
              <string>Счет 2</string>
             </property>
@@ -1150,6 +1224,31 @@
           </item>
           <item row="4" column="0">
            <widget class="QSpinBox" name="sbScore1">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="showGroupSeparator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="value">
+             <number>99</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QSpinBox" name="sbScore2">
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
@@ -1165,18 +1264,28 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QSpinBox" name="sbScore2">
+           <widget class="QLabel" name="label_6">
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
+            </property>
+            <property name="text">
+             <string>:</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <property name="buttonSymbols">
-             <enum>QAbstractSpinBox::PlusMinus</enum>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_7">
+            <property name="styleSheet">
+             <string notr="true">font-size: 12pt;</string>
             </property>
-            <property name="showGroupSeparator" stdset="0">
-             <bool>false</bool>
+            <property name="text">
+             <string>:</string>
             </property>
-            <property name="value">
-             <number>99</number>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -1198,17 +1307,62 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>btOpenLogo</tabstop>
   <tabstop>lineChampName</tabstop>
   <tabstop>lineCommand1</tabstop>
   <tabstop>lineCommand2</tabstop>
+  <tabstop>btApply</tabstop>
   <tabstop>rb43</tabstop>
   <tabstop>rb1610</tabstop>
   <tabstop>rb169</tabstop>
+  <tabstop>cbFont</tabstop>
+  <tabstop>tbFontBold</tabstop>
+  <tabstop>tbFontItalic</tabstop>
+  <tabstop>cbFont2</tabstop>
+  <tabstop>tbFont2Bold</tabstop>
+  <tabstop>tbFont2Italic</tabstop>
+  <tabstop>sbChampName</tabstop>
+  <tabstop>sbCommand</tabstop>
+  <tabstop>sbMatch</tabstop>
+  <tabstop>sbFoul</tabstop>
+  <tabstop>sbScore</tabstop>
+  <tabstop>sbTimer</tabstop>
+  <tabstop>tbSelectClr</tabstop>
+  <tabstop>tbSelectBkg</tabstop>
+  <tabstop>tbSelectCmd1Clr</tabstop>
+  <tabstop>tbSelectCmd1Bkg</tabstop>
+  <tabstop>tbSelectCmd2Clr</tabstop>
+  <tabstop>tbSelectCmd2Bkg</tabstop>
+  <tabstop>tbSelecTmrClr</tabstop>
+  <tabstop>tbSelectFoulClrGreen</tabstop>
+  <tabstop>tbSelectFoulClrRed</tabstop>
+  <tabstop>rbTimerBack</tabstop>
+  <tabstop>radioButton_8</tabstop>
+  <tabstop>leTimeFormat</tabstop>
+  <tabstop>tbSelectSound</tabstop>
+  <tabstop>pbPlaySound</tabstop>
+  <tabstop>rbSelectSound2</tabstop>
+  <tabstop>pbPlaySound2</tabstop>
+  <tabstop>timeEdit</tabstop>
+  <tabstop>rbTimerStop</tabstop>
+  <tabstop>radioButton_2</tabstop>
   <tabstop>btStart</tabstop>
   <tabstop>btStop</tabstop>
+  <tabstop>timeEdit2</tabstop>
+  <tabstop>rbTimer2Stop</tabstop>
+  <tabstop>radioButton_4</tabstop>
   <tabstop>btStart2</tabstop>
   <tabstop>btStop2</tabstop>
+  <tabstop>btResetScore</tabstop>
+  <tabstop>sbMatchN</tabstop>
+  <tabstop>sbFoul1</tabstop>
+  <tabstop>sbFoul2</tabstop>
+  <tabstop>sbScore1</tabstop>
+  <tabstop>sbScore2</tabstop>
+  <tabstop>btApplyScore</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

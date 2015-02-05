@@ -40,9 +40,11 @@ QString Panel::foulRedBkg;
 
 float Panel::ratio;
 
-QTimer *Panel::timer;
+QElapsedTimer *Panel::timer;
+bool Panel::isTimerBack;
 int Panel::remainingTime;
-int Panel::elapsedTime;
+int Panel::timeout;
+QString Panel::timeFormat;
 
 int main(int argc, char *argv[])
 {

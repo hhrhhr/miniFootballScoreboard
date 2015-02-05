@@ -40,6 +40,10 @@
   <property name="windowTitle">
    <string>Табло (двойной щелчок - полный экран)</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/scoreboard.ico</normaloff>:/scoreboard.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">* {
 font: bold normal 30px &quot;Arial Black&quot;;
@@ -229,6 +233,8 @@ border-radius: 7px;
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

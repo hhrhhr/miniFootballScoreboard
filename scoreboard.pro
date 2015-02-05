@@ -13,7 +13,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        widget.cpp \
+    widget.cpp \
     panel.cpp \
     dialog.cpp
 
@@ -26,4 +26,8 @@ FORMS    += widget.ui \
 
 RESOURCES += \
     res.qrc
+
+win32 {
+    RC_FILE = scoreboard.rc
+}
 

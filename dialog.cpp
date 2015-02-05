@@ -11,6 +11,7 @@ Dialog::Dialog(QWidget *parent) :
 
     ui->setupUi(this);
     this->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
+    ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
 
     changeTexts();
     changeScore();
@@ -18,7 +19,7 @@ Dialog::Dialog(QWidget *parent) :
 
     refresh = new QTimer(this);
     connect(refresh, SIGNAL(timeout()), this, SLOT(onRefresh()));
-    refresh->start(200);
+    refresh->start(333);
 }
 
 Dialog::~Dialog()
@@ -65,19 +66,16 @@ void Dialog::changeScore()
 
 void Dialog::onRefresh()
 {
-    QString str;
-    int t;
-    if (p.timer->isActive())
-        t = p.timer->remainingTime();
-    else
-        t = p.remainingTime;
-    int h = t / 3600000; Q_UNUSED(h);
-    int m = t % 3600000 / 60000;
-    int s = t % 60000 / 1000;
-//    int ms = t % 1000;
-//    str.sprintf("%1d:%02d:%02d.%1d", h, m, s);
-    str.sprintf("%02d:%02d", m, s);
-    ui->lbTimer->setText(str);
+    if (p.timer->isValid()) {
+        int t = p.timeout - p.timer->elapsed();
+        if (t > 0) {
+            if (!p.isTimerBack)
+                t = p.timer->elapsed();
+            ui->lbTimer->setText(QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat));
+        } else {
+            ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
+        }
+    }
 }
 
 void Dialog::resizeEvent(QResizeEvent *e)
@@ -122,6 +120,7 @@ font: %1 %2 %3px \"%4\";\n\
 background-color: \"%5\";\n\
 color: \"%6\";\n\
 margin: %7px;\n\
+padding: 0;\n\
 border-color: \"%8\";\n\
 border-width: %9px;\n\
 border-style: solid;\n\
@@ -139,7 +138,7 @@ border-radius: %10px;\n\
 #lbFoul1:disabled, #lbFoul2:disabled {background-color: \"%5\";}\n\
 #lbScore1, #lbScore2, #lbScoreDivisor {font-size: %6px;}\n\
 #lbTimer {font-size: %7px; color: \"%8\";}\n\
-#Dialog, #lbScoreDivisor {border-width: 0;}\n\
+#Dialog, #lbScoreDivisor, #lbScore1, #lbScore2 {border-width: 0;}\n\
 #lbLogo {border-color: \"%9\";}\n\
 ");
 

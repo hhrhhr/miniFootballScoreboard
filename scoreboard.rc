@@ -1,0 +1,32 @@
+#include "winver.h"
+
+1 TYPELIB "scoreboard.rc"
+1 ICON DISCARDABLE "mainwindow.ico"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,9,0,0
+ PRODUCTVERSION 0,9,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEOS 0x00040000L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "DVZ"
+            VALUE "FileDescription", "Scoreboard for mini football"
+            VALUE "FileVersion", "0.9.0.0"
+            VALUE "LegalCopyright", "(C) 2015 Dmitry Zaitsev (hhrhhr@ya.ru)"
+            VALUE "InternalName", "scoreboard.exe"
+            VALUE "OriginalFilename", "scoreboard.exe"
+            VALUE "ProductName", "Scoreboard for mini football"
+            VALUE "ProductVersion", "0.9.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x419, 65001
+    END
+END 

@@ -71,15 +71,16 @@ void Panel::init()
     command2Clr = color;
     command2Bkg = "#00007f";
 
-    timerClr = "#aaff7f";
+    timerClr = "#00ff7f";
 
     foulGreenBkg = "#00aa00";
     foulRedBkg = "#aa0000";
 
     ratio = 4.0 / 3.0;
 
-    timer = new QTimer();
-    timer->setSingleShot(true);
+    timer = new QElapsedTimer();
+    isTimerBack = true;
     remainingTime = 0;
-    elapsedTime = 0;
+    timeout = 0;
+    timeFormat = "mm:ss";
 }

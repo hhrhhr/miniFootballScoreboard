@@ -8,6 +8,8 @@
 #include <QToolButton>
 #include "panel.h"
 
+#include <QDebug>
+
 namespace Ui {
 class Widget;
 }
@@ -43,8 +45,6 @@ private slots:
     void on_btStop_clicked();
     void on_btStart2_clicked();
     void on_btStop2_clicked();
-    void on_btStart3_clicked();
-    void on_btStop3_clicked();
 
     void onTimeout();
     void onRefresh();
@@ -56,6 +56,13 @@ private slots:
     void on_tbSelecTmrClr_clicked();
     void on_tbSelectFoulClrGreen_clicked();
     void on_tbSelectFoulClrRed_clicked();
+
+    void onColorSelected(QColor color);
+
+    void on_tbFontAllBold_toggled(bool checked);
+    void on_tbFontAllItalic_toggled(bool checked);
+    void on_tbFontCommandBold_toggled(bool checked);
+    void on_tbFontCommandItalic_toggled(bool checked);
 
 protected:
     void closeEvent(QCloseEvent *event);

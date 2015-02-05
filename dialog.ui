@@ -38,7 +38,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Табло</string>
+   <string>Табло (двойной щелчок - полный экран)</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,2,3,4">
    <property name="spacing">
@@ -72,6 +72,9 @@
       <widget class="QLabel" name="lbChampName">
        <property name="text">
         <string>Champname</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>

@@ -3,6 +3,7 @@
 
 #include "dialog.h"
 #include <QWidget>
+#include <QCloseEvent>
 #include <QElapsedTimer>
 #include <QTimer>
 #include <QColorDialog>

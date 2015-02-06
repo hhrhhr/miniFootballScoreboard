@@ -7,7 +7,7 @@ Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
-//    qDebug("Dialog()");
+    qDebug("Dialog()");
 
     ui->setupUi(this);
     this->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
@@ -20,7 +20,7 @@ Dialog::Dialog(QWidget *parent) :
 
 Dialog::~Dialog()
 {
-//    qDebug("~Dialog()");
+    qDebug("~Dialog()");
     delete ui;
 }
 

@@ -8,7 +8,7 @@ Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
-//    qDebug("Widget()");
+    qDebug("Widget()");
 
     p.init();
     f = NULL;
@@ -39,7 +39,14 @@ Widget::Widget(QWidget *parent) :
     ui->sbScore->setValue(p.scoreFontSz);
     ui->sbTimer->setValue(p.timerFontSz);
 
+    ui->timeEdit->setTime(QTime::fromMSecsSinceStartOfDay(p.timeout));
+    ui->timeEdit2->setTime(QTime::fromMSecsSinceStartOfDay(p.timeout2));
+    p.timeout = 0;
+    p.timeout2 = 0;
+
     QString c;
+    c.sprintf("image: url(%s);", p.logoPath.toLatin1().data());
+    ui->lbLogo->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.background.toLatin1().data());
     ui->tbSelectBkg->setStyleSheet(c);
     c.sprintf("background-color: \"%s\";", p.color.toLatin1().data());
@@ -64,16 +71,13 @@ Widget::Widget(QWidget *parent) :
 
     ui->leTimeFormat->setText(p.timeFormat);
     ui->rbTimerBack->setChecked(p.isTimerBack);
+    ui->rbTimerNorm->setChecked(!p.isTimerBack);
 
     ui->btOpenLogo->setFocus();
 
-    this->move(200, 50);
+//    this->move(200, 50);
+    readSettings();
 
-    f = new Dialog();
-    f->move(this->geometry().topRight());
-    f->show();
-
-    p.tmpTime = 0;
     activeTimer = 1;
     on_rbTimerBack_toggled(p.isTimerBack);
 
@@ -89,24 +93,61 @@ Widget::Widget(QWidget *parent) :
     connect(refresh, SIGNAL(timeout()), this, SLOT(onRefresh()));
     refresh->start(333);
 
+    f = new Dialog();
+    f->move(this->geometry().topRight());
+    f->show();
+
+    qDebug("Widget() ok");
 }
 
 Widget::~Widget()
 {
-//    qDebug("~Widget()");
+    qDebug("~Widget()");
     delete player;
     delete f;
     delete ui;
 }
 
+void Widget::closeEvent(QCloseEvent *event)
+{
+    p.timeout = ui->timeEdit->time().msecsSinceStartOfDay();
+    p.timeout2 = ui->timeEdit2->time().msecsSinceStartOfDay();
+    p.saveSettings();
+    saveSettings();
+    if (f)
+        f->close();
+    event->accept();
+}
+
 void Widget::readSettings()
 {
+    qDebug("Widget::readSettings()");
+    QSettings settings(QSettings::IniFormat,
+                       QSettings::UserScope,
+                       QApplication::organizationName(),
+                       QApplication::applicationName());
 
+    if (settings.value("MainWindow/ver", "").toString().isEmpty())
+        settings.setValue("MainWindow/ver", QApplication::applicationVersion());
+
+    settings.beginGroup("MainWindow");
+    resize(settings.value("size", QSize(640, 480)).toSize());
+    move(settings.value("pos", QPoint(200, 50)).toPoint());
+    settings.endGroup();
 }
 
 void Widget::saveSettings()
 {
-//    QSettings settings()
+    qDebug("Widget::saveSettings()");
+    QSettings settings(QSettings::IniFormat,
+                       QSettings::UserScope,
+                       QApplication::organizationName(),
+                       QApplication::applicationName());
+
+    settings.beginGroup("MainWindow");
+    settings.setValue("size", size());
+    settings.setValue("pos", pos());
+    settings.endGroup();
 }
 
 void Widget::on_btOpenLogo_clicked()
@@ -127,13 +168,8 @@ void Widget::on_btApply_clicked()
     p.champName = ui->lineChampName->text();
     p.command1 = ui->lineCommand1->text();
     p.command2 = ui->lineCommand2->text();
-    f->changeTexts();
-}
-
-void Widget::closeEvent(QCloseEvent *event)
-{
-    Q_UNUSED(event);
-    f->close();
+    if (f)
+        f->changeTexts();
 }
 
 void Widget::on_sbChampName_valueChanged(int arg1)
@@ -593,7 +629,8 @@ void Widget::on_rbTimerBack_toggled(bool checked)
         QString t0 = QTime(0, 0).toString(p.timeFormat);
         ui->lbTimer->setText(t0);
         ui->lbTimer2->setText(t0);
-        f->setTimer(t0);
+        if(f)
+            f->setTimer(t0);
     }
 }
 

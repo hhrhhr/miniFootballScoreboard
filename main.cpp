@@ -1,5 +1,6 @@
 #include "widget.h"
 #include <QApplication>
+//#include <QStyleFactory>
 
 QString Panel::logoPath;
 QString Panel::champName;
@@ -44,10 +45,13 @@ QElapsedTimer *Panel::timer;
 bool Panel::isTimerBack;
 int Panel::tmpTime;
 int Panel::timeout;
+int Panel::timeout2;
 QString Panel::timeFormat;
 
 QString Panel::sound;
 QString Panel::sound2;
+
+//void Panel::init();
 
 int main(int argc, char *argv[])
 {
@@ -55,6 +59,8 @@ int main(int argc, char *argv[])
     a.setOrganizationName("DVZ");
     a.setApplicationVersion("0.9.0.0");
     a.setApplicationName("scoreboard");
+
+//    QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     Widget w;
     w.show();

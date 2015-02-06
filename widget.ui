@@ -25,18 +25,6 @@
    <property name="spacing">
     <number>5</number>
    </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
@@ -628,7 +616,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_8">
+             <widget class="QRadioButton" name="rbTimerNorm">
               <property name="text">
                <string>Прямой</string>
               </property>
@@ -814,7 +802,7 @@ background-image: url(:/lamp.ico);</string>
         <item>
          <widget class="QLabel" name="lbTimer">
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Courier&quot;;</string>
+           <string notr="true">font: 12pt;</string>
           </property>
           <property name="text">
            <string>00:00</string>
@@ -878,7 +866,7 @@ background-image: url(:/lamp.ico);</string>
          <property name="styleSheet">
           <string notr="true">background-repeat: no-repeat;
 background-position: top right;
-background-image: url(:/lamp.ico);</string>
+background-image: url(:/lamp.ico);w</string>
          </property>
          <property name="text">
           <string>&lt;-</string>
@@ -937,7 +925,7 @@ background-image: url(:/lamp.ico);</string>
         <item>
          <widget class="QLabel" name="lbTimer2">
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Courier&quot;;</string>
+           <string notr="true">font: 12pt;</string>
           </property>
           <property name="text">
            <string>00:00</string>
@@ -1251,7 +1239,7 @@ background-image: url(:/lamp.ico);</string>
   <tabstop>tbSelectFoulClrGreen</tabstop>
   <tabstop>tbSelectFoulClrRed</tabstop>
   <tabstop>rbTimerBack</tabstop>
-  <tabstop>radioButton_8</tabstop>
+  <tabstop>rbTimerNorm</tabstop>
   <tabstop>leTimeFormat</tabstop>
   <tabstop>tbSelectSound</tabstop>
   <tabstop>pbPlaySound</tabstop>

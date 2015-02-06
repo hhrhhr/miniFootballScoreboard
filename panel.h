@@ -3,7 +3,8 @@
 
 #include <QString>
 #include <QElapsedTimer>
-#include <QRgb>
+#include <QSettings>
+#include <QApplication>
 
 class Panel
 {
@@ -51,14 +52,18 @@ public:
 
     static QElapsedTimer *timer;    // монолитный таймер
     static bool isTimerBack;        // обратный или прямой
-    static int timeout;             // заданное время
+    static int timeout;             //
+    static int timeout2;            //
     static int tmpTime;             //
     static QString timeFormat;
 
     static QString sound;
     static QString sound2;
 
-    static void init();
+    void init();
+
+    void readSettings();
+    void saveSettings();
 };
 
 #endif // PANEL_H

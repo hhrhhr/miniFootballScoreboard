@@ -46,6 +46,9 @@ int Panel::tmpTime;
 int Panel::timeout;
 QString Panel::timeFormat;
 
+QString Panel::sound;
+QString Panel::sound2;
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

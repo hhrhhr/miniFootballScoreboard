@@ -75,6 +75,14 @@ Widget::Widget(QWidget *parent) :
     p.tmpTime = 0;
     activeTimer = 1;
 
+    player = new QMediaPlayer;
+    connect(player, SIGNAL(stateChanged(QMediaPlayer::State)),
+            this, SLOT(onStateChanged(QMediaPlayer::State)));
+    if (p.sound.isEmpty())
+        ui->pbPlaySound->setEnabled(false);
+    if (p.sound2.isEmpty())
+        ui->pbPlaySound2->setEnabled(false);
+
     refresh = new QTimer(this);
     connect(refresh, SIGNAL(timeout()), this, SLOT(onRefresh()));
     refresh->start(333);
@@ -84,7 +92,7 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
 //    qDebug("~Widget()");
-
+    delete player;
     delete f;
     delete ui;
 }
@@ -94,7 +102,7 @@ void Widget::on_btOpenLogo_clicked()
     QString path =
             QFileDialog::getOpenFileName(this,
                                          QString("Выберите логотип"),
-                                         QDir::currentPath(),
+                                         "./media/",
                                          QString("Images (*.bmp *.png *.jpg *.jpeg)"));
     if (!path.isEmpty()) {
         p.logoPath = path;
@@ -330,6 +338,12 @@ void Widget::onTimeout()
     } else {
         qDebug("!!!!!!!!!!!!!!");
     }
+
+    if (ui->gbSound->isChecked()) {
+        if (player->state() == QMediaPlayer::PlayingState)
+            player->stop();
+        on_pbPlaySound_clicked();
+    }
 }
 
 void Widget::onRefresh()
@@ -537,5 +551,69 @@ void Widget::on_rbTimerBack_toggled(bool checked)
     } else {
         ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
         ui->lbTimer2->setText(QTime(0, 0).toString(p.timeFormat));
+    }
+}
+
+void Widget::on_tbSelectSound_clicked()
+{
+    QString path =
+            QFileDialog::getOpenFileName(this,
+                                         QString("Выберите звук"),
+                                         p.sound,
+                                         QString("(*.wav *.mp3 *.ogg)"));
+    if (!path.isEmpty()) {
+        p.sound = path;
+        ui->pbPlaySound->setEnabled(true);
+    }
+}
+
+void Widget::on_tbSelectSound2_clicked()
+{
+    QString path =
+            QFileDialog::getOpenFileName(this,
+                                         QString("Выберите звук"),
+                                         p.sound2,
+                                         QString("(*.wav *.mp3 *.ogg)"));
+    if (!path.isEmpty()) {
+        p.sound2 = path;
+        ui->pbPlaySound2->setEnabled(true);
+    }
+}
+
+void Widget::on_pbPlaySound_clicked()
+{
+    if (!p.sound.isEmpty()) {
+        if (player->state() == QMediaPlayer::StoppedState) {
+            ui->pbPlaySound->setText("Стоп");
+            ui->pbPlaySound2->setEnabled(false);
+            player->setMedia(QUrl::fromLocalFile(p.sound));
+            player->play();
+        } else {
+            player->stop();
+        }
+    }
+}
+
+void Widget::on_pbPlaySound2_clicked()
+{
+    if (!p.sound2.isEmpty()) {
+        if (player->state() == QMediaPlayer::StoppedState) {
+            ui->pbPlaySound2->setText("Стоп");
+            ui->pbPlaySound->setEnabled(false);
+            player->setMedia(QUrl::fromLocalFile(p.sound2));
+            player->play();
+        } else {
+            player->stop();
+        }
+    }
+}
+
+void Widget::onStateChanged(QMediaPlayer::State state)
+{
+    if (state == QMediaPlayer::StoppedState) {
+        ui->pbPlaySound->setEnabled(true);
+        ui->pbPlaySound2->setEnabled(true);
+        ui->pbPlaySound->setText("Проиграть");
+        ui->pbPlaySound2->setText("Проиграть");
     }
 }

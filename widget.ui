@@ -673,10 +673,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_11">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+        <widget class="QGroupBox" name="gbSound">
          <property name="title">
           <string>Звук по окончании</string>
          </property>
@@ -684,7 +681,7 @@
           <bool>true</bool>
          </property>
          <property name="checked">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_14">
           <property name="spacing">
@@ -724,9 +721,6 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_13">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
          <property name="title">
           <string>Сирена</string>
          </property>
@@ -734,7 +728,7 @@
           <bool>true</bool>
          </property>
          <property name="checked">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_16">
           <property name="spacing">
@@ -753,7 +747,7 @@
            <number>5</number>
           </property>
           <item>
-           <widget class="QToolButton" name="rbSelectSound2">
+           <widget class="QToolButton" name="tbSelectSound2">
             <property name="text">
              <string>Выбрать...</string>
             </property>
@@ -1241,7 +1235,7 @@
   <tabstop>leTimeFormat</tabstop>
   <tabstop>tbSelectSound</tabstop>
   <tabstop>pbPlaySound</tabstop>
-  <tabstop>rbSelectSound2</tabstop>
+  <tabstop>tbSelectSound2</tabstop>
   <tabstop>pbPlaySound2</tabstop>
   <tabstop>timeEdit</tabstop>
   <tabstop>btStart</tabstop>

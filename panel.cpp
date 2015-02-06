@@ -83,4 +83,7 @@ void Panel::init()
     tmpTime = 0;
     timeout = 0;
     timeFormat = "mm:ss";
+
+    sound = "./media/hong.mp3";
+    sound2 = "./media/siren.mp3";
 }

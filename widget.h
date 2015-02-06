@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QColorDialog>
 #include <QToolButton>
+#include <QMediaPlayer>
 #include "panel.h"
 
 #include <QDebug>
@@ -74,6 +75,13 @@ private slots:
     void on_leTimeFormat_textChanged(const QString &arg1);
     void on_rbTimerBack_toggled(bool checked);
 
+    void on_tbSelectSound_clicked();
+    void on_tbSelectSound2_clicked();
+    void on_pbPlaySound_clicked();
+    void on_pbPlaySound2_clicked();
+
+    void onStateChanged(QMediaPlayer::State state);
+
 protected:
     void closeEvent(QCloseEvent *event);
 
@@ -84,6 +92,8 @@ private:
 
     QTimer *refresh;
     int activeTimer;
+
+    QMediaPlayer *player;
 
     void selectColor(QToolButton *b, QString &elem);
 };

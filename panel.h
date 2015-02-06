@@ -55,6 +55,9 @@ public:
     static int tmpTime;             //
     static QString timeFormat;
 
+    static QString sound;
+    static QString sound2;
+
     static void init();
 };
 

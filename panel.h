@@ -49,10 +49,10 @@ public:
 
     static float ratio;
 
-    static QElapsedTimer *timer;
-    static bool isTimerBack;
-    static int timeout;
-    static int remainingTime;
+    static QElapsedTimer *timer;    // монолитный таймер
+    static bool isTimerBack;        // обратный или прямой
+    static int timeout;             // заданное время
+    static int tmpTime;             //
     static QString timeFormat;
 
     static void init();

@@ -390,7 +390,7 @@
           <item row="3" column="0">
            <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>Матч</string>
+             <string>Тайм</string>
             </property>
            </widget>
           </item>
@@ -588,7 +588,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1,0,1,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,1,0,1,1">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <property name="spacing">
@@ -829,56 +829,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_8">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="title">
-           <string>Поведение</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <property name="spacing">
-            <number>5</number>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <property name="topMargin">
-            <number>5</number>
-           </property>
-           <property name="rightMargin">
-            <number>5</number>
-           </property>
-           <property name="bottomMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QRadioButton" name="rbTimerStop">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании ничего не делать&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Стоп</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="radioButton_2">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании запустить таймер перерыва&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>--&gt;</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="btStart">
           <property name="text">
            <string>Старт</string>
@@ -989,56 +939,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_9">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="title">
-           <string>Поведение</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <property name="spacing">
-            <number>5</number>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <property name="topMargin">
-            <number>5</number>
-           </property>
-           <property name="rightMargin">
-            <number>5</number>
-           </property>
-           <property name="bottomMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QRadioButton" name="rbTimer2Stop">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании ничего не делать&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Стоп</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="radioButton_4">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По окончании запустить следующий таймер&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>&lt;--</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="btStart2">
           <property name="text">
            <string>Старт</string>
@@ -1087,7 +987,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,1">
           <item row="0" column="0">
            <widget class="QLabel" name="label_5">
             <property name="styleSheet">
@@ -1344,13 +1244,9 @@
   <tabstop>rbSelectSound2</tabstop>
   <tabstop>pbPlaySound2</tabstop>
   <tabstop>timeEdit</tabstop>
-  <tabstop>rbTimerStop</tabstop>
-  <tabstop>radioButton_2</tabstop>
   <tabstop>btStart</tabstop>
   <tabstop>btStop</tabstop>
   <tabstop>timeEdit2</tabstop>
-  <tabstop>rbTimer2Stop</tabstop>
-  <tabstop>radioButton_4</tabstop>
   <tabstop>btStart2</tabstop>
   <tabstop>btStop2</tabstop>
   <tabstop>btResetScore</tabstop>

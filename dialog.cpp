@@ -11,7 +11,7 @@ Dialog::Dialog(QWidget *parent) :
 
     ui->setupUi(this);
     this->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
-    ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
+    ui->lbTimer->setText("--:--:--");
 
     changeTexts();
     changeScore();
@@ -66,15 +66,16 @@ void Dialog::changeScore()
 
 void Dialog::onRefresh()
 {
-    if (p.timer->isValid()) {
-        int t = p.timeout - p.timer->elapsed();
-        if (t > 0) {
-            if (!p.isTimerBack)
-                t = p.timer->elapsed();
-            ui->lbTimer->setText(QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat));
-        } else {
-            ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
-        }
+    int e = 0;
+    if (p.timer->isValid())
+        e = p.timer->elapsed();
+
+    int t = p.timeout - p.tmpTime - e;
+    if (t >= 0) {
+        if (!p.isTimerBack)
+            t = p.tmpTime + e;
+        QString str = QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat);
+        ui->lbTimer->setText(str);
     }
 }
 

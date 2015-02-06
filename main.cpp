@@ -42,7 +42,7 @@ float Panel::ratio;
 
 QElapsedTimer *Panel::timer;
 bool Panel::isTimerBack;
-int Panel::remainingTime;
+int Panel::tmpTime;
 int Panel::timeout;
 QString Panel::timeFormat;
 

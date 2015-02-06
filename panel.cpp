@@ -80,7 +80,7 @@ void Panel::init()
 
     timer = new QElapsedTimer();
     isTimerBack = true;
-    remainingTime = 0;
+    tmpTime = 0;
     timeout = 0;
     timeFormat = "mm:ss";
 }

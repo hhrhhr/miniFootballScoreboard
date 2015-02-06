@@ -96,6 +96,8 @@ private:
     QMediaPlayer *player;
 
     void selectColor(QToolButton *b, QString &elem);
+    void readSettings();
+    void saveSettings();
 };
 
 #endif // WIDGET_H

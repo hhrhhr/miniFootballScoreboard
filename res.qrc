@@ -3,5 +3,6 @@
     <file>logo.png</file>
     <file>scoreboard.ico</file>
     <file>mainwindow.ico</file>
+    <file>lamp.ico</file>
 </qresource>
 </RCC>

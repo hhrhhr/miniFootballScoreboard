@@ -16,10 +16,6 @@ Dialog::Dialog(QWidget *parent) :
     changeTexts();
     changeScore();
     changeRatio();
-
-    refresh = new QTimer(this);
-    connect(refresh, SIGNAL(timeout()), this, SLOT(onRefresh()));
-    refresh->start(333);
 }
 
 Dialog::~Dialog()
@@ -64,19 +60,9 @@ void Dialog::changeScore()
 }
 
 
-void Dialog::onRefresh()
+void Dialog::setTimer(QString &time)
 {
-    int e = 0;
-    if (p.timer->isValid())
-        e = p.timer->elapsed();
-
-    int t = p.timeout - p.tmpTime - e;
-    if (t >= 0) {
-        if (!p.isTimerBack)
-            t = p.tmpTime + e;
-        QString str = QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat);
-        ui->lbTimer->setText(str);
-    }
+    ui->lbTimer->setText(time);
 }
 
 void Dialog::resizeEvent(QResizeEvent *e)

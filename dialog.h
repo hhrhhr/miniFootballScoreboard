@@ -21,19 +21,16 @@ public:
     void changeRatio();
     void changeFonts();
     void changeScore();
+    void setTimer(QString &time);
 
 protected:
     void resizeEvent(QResizeEvent *e);
     void keyPressEvent(QKeyEvent *e);
     void mouseDoubleClickEvent(QMouseEvent *e);
 
-private slots:
-    void onRefresh();
-
 private:
     Panel p;
     Ui::Dialog *ui;
-    QTimer *refresh;
 
     void calculateStyle();
     void checkFouls();

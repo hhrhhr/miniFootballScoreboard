@@ -52,6 +52,9 @@ QString Panel::sound2;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setOrganizationName("DVZ");
+    a.setApplicationVersion("0.9.0.0");
+    a.setApplicationName("scoreboard");
 
     Widget w;
     w.show();

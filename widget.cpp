@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include <QFileDialog>
 #include <QPixmap>
+#include <QSettings>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -74,6 +75,7 @@ Widget::Widget(QWidget *parent) :
 
     p.tmpTime = 0;
     activeTimer = 1;
+    on_rbTimerBack_toggled(p.isTimerBack);
 
     player = new QMediaPlayer;
     connect(player, SIGNAL(stateChanged(QMediaPlayer::State)),
@@ -95,6 +97,16 @@ Widget::~Widget()
     delete player;
     delete f;
     delete ui;
+}
+
+void Widget::readSettings()
+{
+
+}
+
+void Widget::saveSettings()
+{
+//    QSettings settings()
 }
 
 void Widget::on_btOpenLogo_clicked()
@@ -234,6 +246,7 @@ void Widget::on_btApplyScore_clicked()
 void Widget::on_btStart_clicked()
 {
     if (!p.timer->isValid()) {  // start
+        p.isTimerBack = ui->rbTimerBack->isChecked();
         int ms = ui->timeEdit->time().msecsSinceStartOfDay();
         p.timeout = ms;
         activeTimer = 1;
@@ -261,21 +274,28 @@ void Widget::on_btStart_clicked()
 
 void Widget::on_btStop_clicked()
 {
-    p.timer->invalidate();
-    p.tmpTime = 0;
+    if (p.timer->isValid()) {
+        p.timer->invalidate();
+        p.tmpTime = 0;
+        activeTimer = 1;
 
-    ui->btStop->setEnabled(false);
-    ui->btStop2->setEnabled(false);
-    ui->btStart->setEnabled(true);
-    ui->btStart2->setEnabled(true);
-    ui->btResetScore->setEnabled(true);
+        ui->btStart->setEnabled(true);
+        //    ui->btStop->setEnabled(false);
+        ui->btStart2->setEnabled(true);
+        ui->btStop2->setEnabled(true);
+        ui->btResetScore->setEnabled(true);
 
-    ui->gbInputData->setEnabled(true);
-    ui->gbStyle->setEnabled(true);
-    ui->gbTimer->setEnabled(true);
+        ui->gbInputData->setEnabled(true);
+        ui->gbStyle->setEnabled(true);
+        ui->gbTimer->setEnabled(true);
 
-    on_rbTimerBack_toggled(p.isTimerBack);
-    ui->btStart->setText(QString("Старт"));
+        ui->btStart->setText(QString("Старт"));
+        ui->btStart->setFocus();
+    } else {
+        activeTimer = 1;
+        on_rbTimerBack_toggled(ui->rbTimerBack->isChecked());
+    }
+    ui->tbSetFocus->setText("<-");
     ui->btStart->setFocus();
 }
 
@@ -283,6 +303,7 @@ void Widget::on_btStop_clicked()
 void Widget::on_btStart2_clicked()
 {
     if (!p.timer->isValid()) {  // start
+        p.isTimerBack = ui->rbTimerBack->isChecked();
         int ms = ui->timeEdit2->time().msecsSinceStartOfDay();
         p.timeout = ms;
         activeTimer = 2;
@@ -295,8 +316,8 @@ void Widget::on_btStart2_clicked()
     }
 
     ui->btStart->setEnabled(false);
-    ui->btStart2->setEnabled(true);
     ui->btStop->setEnabled(false);
+    ui->btStart2->setEnabled(true);
     ui->btStop2->setEnabled(true);
     ui->tbSetFocus->setText("->");
 
@@ -310,21 +331,29 @@ void Widget::on_btStart2_clicked()
 
 void Widget::on_btStop2_clicked()
 {
-    p.timer->invalidate();
-    p.tmpTime = 0;
+    if (p.timer->isValid()) {
+        p.timer->invalidate();
+        p.tmpTime = 0;
+        activeTimer = 2;
 
-    ui->btStart->setEnabled(true);
-    ui->btStart2->setEnabled(true);
-    ui->btStop->setEnabled(false);
-    ui->btStop2->setEnabled(false);
+        ui->btStart->setEnabled(true);
+        ui->btStop->setEnabled(true);
+        ui->btStart2->setEnabled(true);
+//        ui->btStop2->setEnabled(false);
 
-    ui->btResetScore->setEnabled(true);
-    ui->gbInputData->setEnabled(true);
-    ui->gbStyle->setEnabled(true);
-    ui->gbTimer->setEnabled(true);
+        ui->btResetScore->setEnabled(true);
+        ui->gbInputData->setEnabled(true);
+        ui->gbStyle->setEnabled(true);
+        ui->gbTimer->setEnabled(true);
 
-    on_rbTimerBack_toggled(p.isTimerBack);
-    ui->btStart2->setText(QString("Старт"));
+        //    on_rbTimerBack_toggled(p.isTimerBack);
+        ui->btStart2->setText(QString("Старт"));
+        ui->btStart2->setFocus();
+    } else {
+        activeTimer = 2;
+        on_rbTimerBack_toggled(ui->rbTimerBack->isChecked());
+    }
+    ui->tbSetFocus->setText("->");
     ui->btStart2->setFocus();
 }
 
@@ -338,6 +367,8 @@ void Widget::onTimeout()
     } else {
         qDebug("!!!!!!!!!!!!!!");
     }
+
+    on_rbTimerBack_toggled(!p.isTimerBack);
 
     if (ui->gbSound->isChecked()) {
         if (player->state() == QMediaPlayer::PlayingState)
@@ -355,6 +386,8 @@ void Widget::onRefresh()
                 t = p.tmpTime + p.timer->elapsed();
             QString str = QTime::fromMSecsSinceStartOfDay(t).toString(p.timeFormat);
 
+            if (f)
+                f->setTimer(str);
             if (activeTimer == 1) {
                 ui->lbTimer->setText(str);
             } else if (activeTimer == 2) {
@@ -546,11 +579,21 @@ void Widget::on_rbTimerBack_toggled(bool checked)
 {
     p.isTimerBack = checked;
     if (checked) {
-        ui->lbTimer->setText(ui->timeEdit->time().toString(p.timeFormat));
-        ui->lbTimer2->setText(ui->timeEdit2->time().toString(p.timeFormat));
+        QString t1 = ui->timeEdit->time().toString(p.timeFormat);
+        QString t2 = ui->timeEdit2->time().toString(p.timeFormat);
+        ui->lbTimer->setText(t1);
+        ui->lbTimer2->setText(t2);
+        if (f) {
+            if (activeTimer == 1)
+                f->setTimer(t1);
+            else
+                f->setTimer(t2);
+        }
     } else {
-        ui->lbTimer->setText(QTime(0, 0).toString(p.timeFormat));
-        ui->lbTimer2->setText(QTime(0, 0).toString(p.timeFormat));
+        QString t0 = QTime(0, 0).toString(p.timeFormat);
+        ui->lbTimer->setText(t0);
+        ui->lbTimer2->setText(t0);
+        f->setTimer(t0);
     }
 }
 

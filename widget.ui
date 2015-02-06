@@ -650,6 +650,11 @@
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;H - часы без ведущего нуля&lt;br/&gt;HH - часы с ведущим нулём&lt;br/&gt;mm - минуты&lt;br/&gt;ss - секунды&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-repeat: no-repeat;
+background-position: top right;
+background-image: url(:/lamp.ico);</string>
+              </property>
               <property name="text">
                <string>mm:ss</string>
               </property>
@@ -831,11 +836,16 @@
         </item>
         <item>
          <widget class="QPushButton" name="btStop">
-          <property name="enabled">
-           <bool>false</bool>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Остановить таймер / Установить таймер активным&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-repeat: no-repeat;
+background-position: top right;
+background-image: url(:/lamp.ico);</string>
           </property>
           <property name="text">
-           <string>Стоп</string>
+           <string>Стоп / Выбрать</string>
           </property>
          </widget>
         </item>
@@ -864,6 +874,11 @@
         <widget class="QToolButton" name="tbSetFocus">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Установить фокус на кнопку &amp;quot;Старт/Пауза&amp;quot; текущего таймера&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-repeat: no-repeat;
+background-position: top right;
+background-image: url(:/lamp.ico);</string>
          </property>
          <property name="text">
           <string>&lt;-</string>
@@ -941,11 +956,16 @@
         </item>
         <item>
          <widget class="QPushButton" name="btStop2">
-          <property name="enabled">
-           <bool>false</bool>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Остановить таймер / Установить таймер активным&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-repeat: no-repeat;
+background-position: top right;
+background-image: url(:/lamp.ico);</string>
           </property>
           <property name="text">
-           <string>Стоп</string>
+           <string>Стоп / Выбрать</string>
           </property>
          </widget>
         </item>

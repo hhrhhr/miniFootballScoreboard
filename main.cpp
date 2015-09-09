@@ -1,6 +1,5 @@
 #include "widget.h"
 #include <QApplication>
-//#include <QStyleFactory>
 
 QString Panel::logoPath;
 QString Panel::champName;
@@ -59,8 +58,6 @@ int main(int argc, char *argv[])
     a.setOrganizationName("DVZ");
     a.setApplicationVersion("0.9.0.0");
     a.setApplicationName("scoreboard");
-
-//    QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     Widget w;
     w.show();
